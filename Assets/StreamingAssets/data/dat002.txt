@@ -1,0 +1,35 @@
+﻿{ 
+	"dataFileVersion" : "0.1", 
+	"entries" : [
+	{
+		"name" : "Health Potion",
+		"displayGfx" : 1,
+		"itemType" : 2,
+		"sizeX" : 1,
+		"sizeY" : 1
+	},
+	{
+		"name" : "Armor",
+		"displayGfx" : 155,
+		"bodyGfx" : 0,
+		"itemType" : 4,
+		"sizeX" : 2,
+		"sizeY" : 3
+	},
+	{
+		"name" : "Weapon",
+		"displayGfx" : 244,
+		"bodyGfx" : 0,
+		"itemType" : 5,
+		"sizeX" : 1,
+		"sizeY" : 4
+	},
+	{
+		"name" : "Boots",
+		"displayGfx" : 271,
+		"bodyGfx" : 0,
+		"itemType" : 11,
+		"sizeX" : 2,
+		"sizeY" : 2
+	}]
+}

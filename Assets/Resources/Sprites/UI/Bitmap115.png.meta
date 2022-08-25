@@ -1,0 +1,610 @@
+fileFormatVersion: 2
+guid: d0262a5be2b0c624fb489aa0ae672469
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8114646688665706018
+    second: Bitmap115_0
+  - first:
+      213: -8258432784094490004
+    second: Bitmap115_1
+  - first:
+      213: 3788552674268022181
+    second: Bitmap115_2
+  - first:
+      213: -2402944001308187072
+    second: Bitmap115_3
+  - first:
+      213: 8102106828539828649
+    second: Bitmap115_4
+  - first:
+      213: -1424507431497798476
+    second: Bitmap115_5
+  - first:
+      213: -3293837652633857490
+    second: Bitmap115_6
+  - first:
+      213: 3266803150097175638
+    second: Bitmap115_7
+  - first:
+      213: 4408948053575420624
+    second: Bitmap115_8
+  - first:
+      213: -5258922657103629543
+    second: Bitmap115_9
+  - first:
+      213: -5136132965146772721
+    second: Bitmap115_10
+  - first:
+      213: 6497135357800449190
+    second: Bitmap115_11
+  - first:
+      213: 2721673016809670952
+    second: Bitmap115_12
+  - first:
+      213: -4529804271112172312
+    second: Bitmap115_13
+  - first:
+      213: 774797757614618647
+    second: Bitmap115_14
+  - first:
+      213: -2870335496768278035
+    second: Bitmap115_15
+  - first:
+      213: 5639795181989422006
+    second: Bitmap115_16
+  - first:
+      213: -4769256271148385612
+    second: Bitmap115_17
+  - first:
+      213: 7712619724525352210
+    second: Bitmap115_18
+  - first:
+      213: 4227598447915096669
+    second: Bitmap115_19
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Bitmap115_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 261
+        width: 91
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed1e74474dbf26f80800000000000000
+      internalID: -8114646688665706018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bitmap115_1
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 261
+        width: 91
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c629b9e4327246d80800000000000000
+      internalID: -8258432784094490004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bitmap115_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 232
+        width: 91
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a50a9aa594a39430800000000000000
+      internalID: 3788552674268022181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bitmap115_3
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 232
+        width: 91
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 046aed2892707aed0800000000000000
+      internalID: -2402944001308187072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bitmap115_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 203
+        width: 91
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a91267db37707070800000000000000
+      internalID: 8102106828539828649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bitmap115_5
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 203
+        width: 91
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bc6ba5d9022b3ce0800000000000000
+      internalID: -1424507431497798476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bitmap115_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 174
+        width: 91
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e22d3fe3b10f942d0800000000000000
+      internalID: -3293837652633857490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bitmap115_7
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 174
+        width: 91
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6545ba02824065d20800000000000000
+      internalID: 3266803150097175638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bitmap115_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 145
+        width: 91
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0da438625eabf2d30800000000000000
+      internalID: 4408948053575420624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bitmap115_9
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 145
+        width: 91
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 913b512d4bd8407b0800000000000000
+      internalID: -5258922657103629543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bitmap115_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 116
+        width: 91
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0bb045d74ac8b8b0800000000000000
+      internalID: -5136132965146772721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bitmap115_11
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 116
+        width: 91
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a483534f267a2a50800000000000000
+      internalID: 6497135357800449190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bitmap115_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 87
+        width: 91
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 829c4b1503355c520800000000000000
+      internalID: 2721673016809670952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bitmap115_13
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 87
+        width: 91
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8eccf4ee307e221c0800000000000000
+      internalID: -4529804271112172312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bitmap115_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 58
+        width: 91
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 718736b9472a0ca00800000000000000
+      internalID: 774797757614618647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bitmap115_15
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 58
+        width: 91
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de1bee8c2158a28d0800000000000000
+      internalID: -2870335496768278035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bitmap115_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 29
+        width: 91
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b3607c46d3944e40800000000000000
+      internalID: 5639795181989422006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bitmap115_17
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 29
+        width: 91
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ba7563a0b230ddb0800000000000000
+      internalID: -4769256271148385612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bitmap115_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 91
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2153108b6cab80b60800000000000000
+      internalID: 7712619724525352210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bitmap115_19
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 0
+        width: 91
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5ad8fcb3627baa30800000000000000
+      internalID: 4227598447915096669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Bitmap115_7: 3266803150097175638
+      Bitmap115_2: 3788552674268022181
+      Bitmap115_6: -3293837652633857490
+      Bitmap115_0: -8114646688665706018
+      Bitmap115_14: 774797757614618647
+      Bitmap115_8: 4408948053575420624
+      Bitmap115_15: -2870335496768278035
+      Bitmap115_10: -5136132965146772721
+      Bitmap115_5: -1424507431497798476
+      Bitmap115_19: 4227598447915096669
+      Bitmap115_3: -2402944001308187072
+      Bitmap115_18: 7712619724525352210
+      Bitmap115_1: -8258432784094490004
+      Bitmap115_17: -4769256271148385612
+      Bitmap115_11: 6497135357800449190
+      Bitmap115_9: -5258922657103629543
+      Bitmap115_16: 5639795181989422006
+      Bitmap115_4: 8102106828539828649
+      Bitmap115_12: 2721673016809670952
+      Bitmap115_13: -4529804271112172312
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

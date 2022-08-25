@@ -1,0 +1,1510 @@
+fileFormatVersion: 2
+guid: 5c32c9d98a662844aa1064c2331b952c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7440431808199402368
+    second: CharactersAttackAnim_0
+  - first:
+      213: 4259970147820938493
+    second: CharactersAttackAnim_1
+  - first:
+      213: -3878487279618183707
+    second: CharactersAttackAnim_2
+  - first:
+      213: 1082392239299103083
+    second: CharactersAttackAnim_3
+  - first:
+      213: 1822059494854951591
+    second: CharactersAttackAnim_4
+  - first:
+      213: 6518660796406919967
+    second: CharactersAttackAnim_5
+  - first:
+      213: 7573879806321231540
+    second: CharactersAttackAnim_6
+  - first:
+      213: -818090644617446365
+    second: CharactersAttackAnim_7
+  - first:
+      213: 2133640805462768655
+    second: CharactersAttackAnim_8
+  - first:
+      213: -5891125942420976096
+    second: CharactersAttackAnim_9
+  - first:
+      213: -630398591801514934
+    second: CharactersAttackAnim_10
+  - first:
+      213: 3345808935128370392
+    second: CharactersAttackAnim_11
+  - first:
+      213: -119943414059229947
+    second: CharactersAttackAnim_12
+  - first:
+      213: -257048949970781594
+    second: CharactersAttackAnim_13
+  - first:
+      213: 6919873899374562217
+    second: CharactersAttackAnim_14
+  - first:
+      213: -8365205059785197432
+    second: CharactersAttackAnim_15
+  - first:
+      213: 5696686568077977531
+    second: CharactersAttackAnim_16
+  - first:
+      213: 1764040134788757394
+    second: CharactersAttackAnim_17
+  - first:
+      213: -1130026394780832097
+    second: CharactersAttackAnim_18
+  - first:
+      213: 1060522783817456664
+    second: CharactersAttackAnim_19
+  - first:
+      213: -3555168806324703189
+    second: CharactersAttackAnim_20
+  - first:
+      213: 2441227247250699008
+    second: CharactersAttackAnim_21
+  - first:
+      213: -8458246352916908299
+    second: CharactersAttackAnim_22
+  - first:
+      213: 875003985572790216
+    second: CharactersAttackAnim_23
+  - first:
+      213: 8794568788336462747
+    second: CharactersAttackAnim_24
+  - first:
+      213: 1956858021323947479
+    second: CharactersAttackAnim_25
+  - first:
+      213: 875149689208609377
+    second: CharactersAttackAnim_26
+  - first:
+      213: 2849096737102120483
+    second: CharactersAttackAnim_27
+  - first:
+      213: -2598912414402901683
+    second: CharactersAttackAnim_28
+  - first:
+      213: 8520706537293043622
+    second: CharactersAttackAnim_29
+  - first:
+      213: 6397411630964094134
+    second: CharactersAttackAnim_30
+  - first:
+      213: 3798088676838459726
+    second: CharactersAttackAnim_31
+  - first:
+      213: -956271829423935264
+    second: CharactersAttackAnim_32
+  - first:
+      213: -1477216447070318996
+    second: CharactersAttackAnim_33
+  - first:
+      213: 3634200980729000886
+    second: CharactersAttackAnim_34
+  - first:
+      213: 4885310007614085505
+    second: CharactersAttackAnim_35
+  - first:
+      213: -1952701926210616704
+    second: CharactersAttackAnim_36
+  - first:
+      213: -5712240793889928910
+    second: CharactersAttackAnim_37
+  - first:
+      213: 4424354574499530832
+    second: CharactersAttackAnim_38
+  - first:
+      213: -8316398450921139831
+    second: CharactersAttackAnim_39
+  - first:
+      213: 5664065256363345276
+    second: CharactersAttackAnim_40
+  - first:
+      213: 585920327820361070
+    second: CharactersAttackAnim_41
+  - first:
+      213: -8539697382818327986
+    second: CharactersAttackAnim_42
+  - first:
+      213: -682202146357540057
+    second: CharactersAttackAnim_43
+  - first:
+      213: 5499304962021402736
+    second: CharactersAttackAnim_44
+  - first:
+      213: -1924974978167783520
+    second: CharactersAttackAnim_45
+  - first:
+      213: 8473839773810010894
+    second: CharactersAttackAnim_46
+  - first:
+      213: -6071914663054101867
+    second: CharactersAttackAnim_47
+  - first:
+      213: -4928864477647634892
+    second: CharactersAttackAnim_48
+  - first:
+      213: -8703438960742456631
+    second: CharactersAttackAnim_49
+  - first:
+      213: 6629687163965036163
+    second: CharactersAttackAnim_50
+  - first:
+      213: 7435910664884460494
+    second: CharactersAttackAnim_51
+  - first:
+      213: 8598830777597979522
+    second: CharactersAttackAnim_52
+  - first:
+      213: -3880639063486711204
+    second: CharactersAttackAnim_53
+  - first:
+      213: -3541848055259418149
+    second: CharactersAttackAnim_54
+  - first:
+      213: -877855810989697021
+    second: CharactersAttackAnim_55
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: CharactersAttackAnim_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 348
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08cd1c801b64eb890800000000000000
+      internalID: -7440431808199402368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_1
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 348
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df4a2a677447e1b30800000000000000
+      internalID: 4259970147820938493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 348
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5edac784e58dc2ac0800000000000000
+      internalID: -3878487279618183707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_3
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 348
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b690013c10e650f00800000000000000
+      internalID: 1082392239299103083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_4
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 348
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a20576f471494910800000000000000
+      internalID: 1822059494854951591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_5
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 348
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f13791df47fe67a50800000000000000
+      internalID: 6518660796406919967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_6
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 348
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b608434e83db1960800000000000000
+      internalID: 7573879806321231540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_7
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 348
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32cb185a4ee85a4f0800000000000000
+      internalID: -818090644617446365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 290
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0cf2ef02073c9d10800000000000000
+      internalID: 2133640805462768655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_9
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 290
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02ec8eafa248e3ea0800000000000000
+      internalID: -5891125942420976096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_10
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 290
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a44a3cc12df5047f0800000000000000
+      internalID: -630398591801514934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_11
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 290
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8dc87a8ef73be6e20800000000000000
+      internalID: 3345808935128370392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_12
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 290
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50d1ad3b910e55ef0800000000000000
+      internalID: -119943414059229947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_13
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 290
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66aba178757ce6cf0800000000000000
+      internalID: -257048949970781594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_14
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 290
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9abc7bef5a4580060800000000000000
+      internalID: 6919873899374562217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_15
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 290
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 888f332a152d8eb80800000000000000
+      internalID: -8365205059785197432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 232
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb7e6075042be0f40800000000000000
+      internalID: 5696686568077977531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_17
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 232
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 297bd9308212b7810800000000000000
+      internalID: 1764040134788757394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_18
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 232
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9ee5482bf65150f0800000000000000
+      internalID: -1130026394780832097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_19
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 232
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81cd5ad5adbb7be00800000000000000
+      internalID: 1060522783817456664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_20
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 232
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2077768ec089aec0800000000000000
+      internalID: -3555168806324703189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_21
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 232
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 003f1684f3bf0e120800000000000000
+      internalID: 2441227247250699008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_22
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 232
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f6f4a771c54e9a80800000000000000
+      internalID: -8458246352916908299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_23
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 232
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8cffd192d73a42c00800000000000000
+      internalID: 875003985572790216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 174
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9b4885a7b59c0a70800000000000000
+      internalID: 8794568788336462747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_25
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 174
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7dd33e4a008282b10800000000000000
+      internalID: 1956858021323947479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_26
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 174
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16a929e6108252c00800000000000000
+      internalID: 875149689208609377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_27
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 174
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32642b123660a8720800000000000000
+      internalID: 2849096737102120483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_28
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 174
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d498921cdeeceebd0800000000000000
+      internalID: -2598912414402901683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_29
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 174
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a753b67371af3670800000000000000
+      internalID: 8520706537293043622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_30
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 174
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b43191cbfb28c850800000000000000
+      internalID: 6397411630964094134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_31
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 174
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e49c368478585b430800000000000000
+      internalID: 3798088676838459726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 116
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e0397276d3aab2f0800000000000000
+      internalID: -956271829423935264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_33
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 116
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6e4200d77fdf7be0800000000000000
+      internalID: -1477216447070318996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_34
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 116
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b37ab289864f6230800000000000000
+      internalID: 3634200980729000886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_35
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 116
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1899f75819b1cc340800000000000000
+      internalID: 4885310007614085505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_36
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 116
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 082cef7a1fb96e4e0800000000000000
+      internalID: -1952701926210616704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_37
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 116
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23902b0434b0ab0b0800000000000000
+      internalID: -5712240793889928910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_38
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 116
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0584b655b07766d30800000000000000
+      internalID: 4424354574499530832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_39
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 116
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9819c3acba7369c80800000000000000
+      internalID: -8316398450921139831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 58
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c754b26575dca9e40800000000000000
+      internalID: 5664065256363345276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_41
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 58
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6db96e0f6b912800800000000000000
+      internalID: 585920327820361070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_42
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 58
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e42d7cfb976ec7980800000000000000
+      internalID: -8539697382818327986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_43
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 58
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72b895923c45886f0800000000000000
+      internalID: -682202146357540057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_44
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 58
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07824d4f9b4715c40800000000000000
+      internalID: 5499304962021402736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_45
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 58
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0af3bc0d47d1945e0800000000000000
+      internalID: -1924974978167783520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_46
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 58
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0ba581c060299570800000000000000
+      internalID: 8473839773810010894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_47
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 58
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 592bc2ac8c93cbba0800000000000000
+      internalID: -6071914663054101867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43e75cf2fd7299bb0800000000000000
+      internalID: -4928864477647634892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_49
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 0
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c2a6a4c06c273780800000000000000
+      internalID: -8703438960742456631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_50
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3865a1c9951610c50800000000000000
+      internalID: 6629687163965036163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_51
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 0
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecb1af14a59a13760800000000000000
+      internalID: 7435910664884460494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_52
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28b6c6e980f255770800000000000000
+      internalID: 8598830777597979522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_53
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 0
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5abe5f0553352ac0800000000000000
+      internalID: -3880639063486711204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_54
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd1bad195f3d8dec0800000000000000
+      internalID: -3541848055259418149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharactersAttackAnim_55
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 0
+        width: 24
+        height: 58
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30852fd7aca31d3f0800000000000000
+      internalID: -877855810989697021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      CharactersAttackAnim_15: -8365205059785197432
+      CharactersAttackAnim_44: 5499304962021402736
+      CharactersAttackAnim_21: 2441227247250699008
+      CharactersAttackAnim_55: -877855810989697021
+      CharactersAttackAnim_45: -1924974978167783520
+      CharactersAttackAnim_50: 6629687163965036163
+      CharactersAttackAnim_23: 875003985572790216
+      CharactersAttackAnim_40: 5664065256363345276
+      CharactersAttackAnim_52: 8598830777597979522
+      CharactersAttackAnim_18: -1130026394780832097
+      CharactersAttackAnim_31: 3798088676838459726
+      CharactersAttackAnim_37: -5712240793889928910
+      CharactersAttackAnim_42: -8539697382818327986
+      CharactersAttackAnim_48: -4928864477647634892
+      CharactersAttackAnim_26: 875149689208609377
+      CharactersAttackAnim_34: 3634200980729000886
+      CharactersAttackAnim_22: -8458246352916908299
+      CharactersAttackAnim_33: -1477216447070318996
+      CharactersAttackAnim_24: 8794568788336462747
+      CharactersAttackAnim_16: 5696686568077977531
+      CharactersAttackAnim_43: -682202146357540057
+      CharactersAttackAnim_54: -3541848055259418149
+      CharactersAttackAnim_30: 6397411630964094134
+      CharactersAttackAnim_12: -119943414059229947
+      CharactersAttackAnim_39: -8316398450921139831
+      CharactersAttackAnim_19: 1060522783817456664
+      CharactersAttackAnim_10: -630398591801514934
+      CharactersAttackAnim_35: 4885310007614085505
+      CharactersAttackAnim_32: -956271829423935264
+      CharactersAttackAnim_38: 4424354574499530832
+      CharactersAttackAnim_51: 7435910664884460494
+      CharactersAttackAnim_11: 3345808935128370392
+      CharactersAttackAnim_6: 7573879806321231540
+      CharactersAttackAnim_13: -257048949970781594
+      CharactersAttackAnim_4: 1822059494854951591
+      CharactersAttackAnim_47: -6071914663054101867
+      CharactersAttackAnim_49: -8703438960742456631
+      CharactersAttackAnim_29: 8520706537293043622
+      CharactersAttackAnim_14: 6919873899374562217
+      CharactersAttackAnim_3: 1082392239299103083
+      CharactersAttackAnim_5: 6518660796406919967
+      CharactersAttackAnim_46: 8473839773810010894
+      CharactersAttackAnim_28: -2598912414402901683
+      CharactersAttackAnim_41: 585920327820361070
+      CharactersAttackAnim_36: -1952701926210616704
+      CharactersAttackAnim_0: -7440431808199402368
+      CharactersAttackAnim_25: 1956858021323947479
+      CharactersAttackAnim_17: 1764040134788757394
+      CharactersAttackAnim_2: -3878487279618183707
+      CharactersAttackAnim_27: 2849096737102120483
+      CharactersAttackAnim_8: 2133640805462768655
+      CharactersAttackAnim_1: 4259970147820938493
+      CharactersAttackAnim_20: -3555168806324703189
+      CharactersAttackAnim_7: -818090644617446365
+      CharactersAttackAnim_9: -5891125942420976096
+      CharactersAttackAnim_53: -3880639063486711204
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

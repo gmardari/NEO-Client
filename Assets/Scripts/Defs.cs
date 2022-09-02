@@ -29,65 +29,10 @@ public struct LongRange
     }
 }
 
-public interface IEntity
-{
-    public ulong EntityId { get; set; }
-    public GameObject Obj { get; set; }
-    public EntityType Type { get; set; }
 
-    public EntityDef GetDef();
-}
 
-public class ItemEntity : IEntity
-{
-    private GameObject obj;
-    private EntityType type;
-    private ulong entityId;
 
-    public int itemId;
-    public string name;
-    public ItemType itemType;
 
-    public GameObject Obj { get => obj; set => obj = value; }
-    public EntityType Type { get => type; set => type = value; }
-    public ulong EntityId { get => entityId; set => entityId = value; }    
-
-    public ItemEntity(ulong entityId, int itemId, GameObject obj)
-    {
-        this.entityId = entityId;
-        this.obj = obj;
-        this.type = EntityType.ITEM;
-        this.itemId = itemId;
-
-        ItemDataEntry entry = DataFiles.Singleton.itemDataFile.entries[itemId];
-        this.name = entry.name;
-        this.itemType = (ItemType) entry.itemType;
-    }
-
-    public EntityDef GetDef()
-    {
-        return obj.GetComponent<EntityDef>();
-    }
-}
-
-public enum ItemType : uint
-{
-    GOLD,
-    STATIC,
-    POTION,
-    HAT,
-    ARMOR,
-    WEAPON,
-    NECKLACE,
-    BACK,
-    GLOVES,
-    BELT,
-    CHARM,
-    BOOTS,
-    RING,
-    BRACELET,
-    BRACER
-}
 
 public enum EntityType : uint
 {

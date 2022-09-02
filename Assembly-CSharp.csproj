@@ -62,9 +62,11 @@
     <Compile Include="Assets\Scripts\CamScript.cs" />
     <Compile Include="Assets\Scripts\UI\GameUI.cs" />
     <Compile Include="Assets\Scripts\Inventory\PaperdollManager.cs" />
+    <Compile Include="Assets\Scripts\Entity\ItemEntity.cs" />
     <Compile Include="Assets\Scripts\Inventory\InvManager.cs" />
     <Compile Include="Assets\Scripts\Defs.cs" />
     <Compile Include="Assets\Scripts\UI\CharacterSelect.cs" />
+    <Compile Include="Assets\Scripts\UI\StartMenu.cs" />
     <Compile Include="Assets\Scripts\Files\DataFiles.cs" />
     <Compile Include="Assets\Scripts\Map\MapDefs.cs" />
     <Compile Include="Assets\Scripts\Entity\EntityDef.cs" />
@@ -87,7 +89,9 @@
     <Compile Include="Assets\Scripts\UI\HeadbarInstance.cs" />
     <Compile Include="Assets\Scripts\Shop\ShopDefs.cs" />
     <Compile Include="Assets\Scripts\Inventory\ChestInvManager.cs" />
+    <Compile Include="Assets\Scripts\UI\TabInputField.cs" />
     <Compile Include="Assets\Scripts\Inventory\InvListener.cs" />
+    <Compile Include="Assets\Scripts\Entity\IEntity.cs" />
     <Compile Include="Assets\Scripts\UI\NewCharacter.cs" />
     <Compile Include="Assets\Scripts\UI\AccountCreation.cs" />
     <Compile Include="Assets\Scripts\Packet\PacketWriter.cs" />

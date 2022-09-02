@@ -138,7 +138,7 @@ public class ChestInvManager : MonoBehaviour
                 entry.transform.Find("Price").GetComponent<Text>().text = $"Price: {item.price}";
                 var fgImage = entry.transform.Find("FG").GetComponent<Image>();
 
-                fgImage.sprite = ResourceLibrary.Singleton.itemDropSprites[data.displayGfx];
+                fgImage.sprite = ResourceLibrary.Singleton.GetDropItemSprite(data.displayGfx);
                 fgImage.SetNativeSize();
             }
         }
@@ -165,7 +165,7 @@ public class ChestInvManager : MonoBehaviour
                 entry.transform.Find("Price").GetComponent<Text>().text = $"Price: {item.price}";
                 var fgImage = entry.transform.Find("FG").GetComponent<Image>();
 
-                fgImage.sprite = ResourceLibrary.Singleton.itemDropSprites[data.displayGfx];
+                fgImage.sprite = ResourceLibrary.Singleton.GetDropItemSprite(data.displayGfx);
                 fgImage.SetNativeSize();
             }
         }
@@ -191,7 +191,7 @@ public class ChestInvManager : MonoBehaviour
                 entry.transform.Find("Price").GetComponent<Text>().text = $"Ingridients: {item.ingridients.Length}";
                 var fgImage = entry.transform.Find("FG").GetComponent<Image>();
 
-                fgImage.sprite = ResourceLibrary.Singleton.itemDropSprites[data.displayGfx];
+                fgImage.sprite = ResourceLibrary.Singleton.GetDropItemSprite(data.displayGfx);
                 fgImage.SetNativeSize();
             }
         }

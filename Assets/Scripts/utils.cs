@@ -25,6 +25,16 @@ public class utils
 
         return def.entityId;
     }
+
+    public static Vector2Int GetEntityNetPos(GameObject entObj)
+    {
+        EntityDef def = entObj.GetComponent<EntityDef>();
+
+        if (def == null)
+            throw new Exception("The given game object is not an entity");
+
+        return def.net_position;
+    }
 }
 
 public static class NetworkTime

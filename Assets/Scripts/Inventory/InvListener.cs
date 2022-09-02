@@ -45,7 +45,7 @@ public class InvListener : MonoBehaviour
 
             uint gfxId = data.displayGfx;
             Image image = GetComponent<Image>();
-            image.sprite = ResourceLibrary.Singleton.itemSprites[gfxId];
+            image.sprite = ResourceLibrary.Singleton.GetInvItemSprite(gfxId);
 
             //Resize image 
             //Vector3 spriteSize = image.sprite.bounds.size * 64f;
@@ -94,7 +94,7 @@ public class InvListener : MonoBehaviour
             transform.Find("Quantity").GetComponent<Text>().text = "x" + chestItem.Quantity.ToString();
 
             Image image = transform.Find("FG").GetComponent<Image>();
-            image.sprite = ResourceLibrary.Singleton.itemDropSprites[gfxId];
+            image.sprite = ResourceLibrary.Singleton.GetDropItemSprite(gfxId);
             image.SetNativeSize();
         }
     }

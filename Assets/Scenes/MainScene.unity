@@ -1750,6 +1750,10 @@ MonoBehaviour:
   guiBranch: {fileID: 0}
   guiRoot: {fileID: 0}
   gameDialog: {fileID: 0}
+  canTransition: 0
+  waitingForConnection: 0
+  willOpenLogin: 0
+  waitingForCharacters: 0
 --- !u!1 &1572105446
 GameObject:
   m_ObjectHideFlags: 0
@@ -2150,11 +2154,6 @@ MonoBehaviour:
   objLayerTiles: []
   overlayLayerTiles: []
   wallLayerTiles: []
-  itemDropSprites: []
-  itemSprites: []
-  bootsSprites: []
-  armorSprites: []
-  weaponSprites: []
   charSprites:
   - {fileID: 3542127132570728493, guid: b5cc87b2dc25c2146bcf935b3d8652e6, type: 3}
   - {fileID: -1960546628078278901, guid: b5cc87b2dc25c2146bcf935b3d8652e6, type: 3}
@@ -2356,11 +2355,6 @@ MonoBehaviour:
   - {fileID: -877855810989697021, guid: 5c32c9d98a662844aa1064c2331b952c, type: 3}
   charBowAttackSprites: []
   charSpellCastSprites: []
-  hairStyleSprites:
-  - {fileID: 21300000, guid: 02328885691dec449b370a3a6044b054, type: 3}
-  - {fileID: 21300000, guid: 789597fdd8b187f408fc8fde755a9852, type: 3}
-  - {fileID: 21300000, guid: 94f3270248cf01c4383322a009877a02, type: 3}
-  - {fileID: 21300000, guid: c995f4cde87635a4aa8a71373e403b02, type: 3}
   genderUIImages:
   - {fileID: 1493831777, guid: e12b712ceb885f9489ba183320909b96, type: 3}
   - {fileID: 1836708378, guid: e12b712ceb885f9489ba183320909b96, type: 3}
@@ -2430,6 +2424,8 @@ MonoBehaviour:
   - {fileID: 1891904576, guid: d31e0487aac214543ad670425a1cf555, type: 3}
   - {fileID: 668645055, guid: d31e0487aac214543ad670425a1cf555, type: 3}
   - {fileID: 416079038, guid: d31e0487aac214543ad670425a1cf555, type: 3}
+  goldGfxIds: 8700000088000000890000008a0000008b000000
+  goldThreshold: 010000000a00000064000000e803000010270000
   music: []
   sfx: []
 --- !u!114 &2006232621

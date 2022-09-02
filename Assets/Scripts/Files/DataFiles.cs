@@ -13,18 +13,22 @@ public class DataFiles : MonoBehaviour
     public ItemDataFile itemDataFile;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         Singleton = this;
         Directory.CreateDirectory(dataFileDirPath);
-        
+        LoadDataFiles();
+
         //SaveExample();
     }
 
     public void LoadDataFiles()
     {
-        npcDataFile = ReadNpcDataFile();
-        itemDataFile = ReadItemDataFile();
+        if(npcDataFile == null)
+            npcDataFile = ReadNpcDataFile();
+
+        if(itemDataFile == null)
+            itemDataFile = ReadItemDataFile();
     }
 
     public void SaveExample()

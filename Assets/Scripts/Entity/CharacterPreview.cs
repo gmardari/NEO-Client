@@ -46,18 +46,16 @@ public class CharacterPreview : MonoBehaviour
         Sprite bootSprite = null;
         Sprite weaponSprite = null; 
 
-        if (def.doll.armor > 0)
-        {
-            ItemDataEntry entry = DataFiles.Singleton.GetItemData((int)def.doll.armor - 1);
-            armorSprite = ResourceLibrary.Singleton.GetArmorSprites(entry.bodyGfx)[0];
-        }
+        if (def.doll.armor > 0)    
+            armorSprite = ResourceLibrary.Singleton.GetItemBodySprites(def.gender, def.doll.armor - 1)[0];
+        
 
         if (def.doll.boots > 0)
-            bootSprite = ResourceLibrary.Singleton.GetBootSprites(def.doll.boots - 1)[0];
-    
+            bootSprite = ResourceLibrary.Singleton.GetItemBodySprites(def.gender, def.doll.boots - 1)[0];
+
 
         if (def.doll.weapon > 0)
-            weaponSprite = ResourceLibrary.Singleton.GetWeaponSprites(def.doll.weapon - 1)[0];
+            weaponSprite = ResourceLibrary.Singleton.GetItemBodySprites(def.gender, def.doll.weapon - 1)[0];
 
         bodyImg.sprite = bodySprite;
         hairImg.sprite = hairSprite;

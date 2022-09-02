@@ -46,7 +46,8 @@ public class InvManager : MonoBehaviour
         {
             SetItemAmount(itemId, quantity);
 
-            if(quantity > 0)
+            //Only set the slot position if item actually still exists (exception is gold as it can be 0)
+            if(quantity > 0 || item.Type == ItemType.GOLD)
             {
                 item.SetSlotPosition(pos);
             }
@@ -140,18 +141,14 @@ public class InvManager : MonoBehaviour
     //Assume we have that item
     public void SetItemAmount(uint itemId, uint quantity)
     {
-        //Delete
-        if(quantity == 0)
-        {
-            invItems[itemId].Quantity = quantity;
+        var item = invItems[itemId];
 
+        item.Quantity = quantity;
+
+        //Delete
+        if (quantity == 0 && item.Type != ItemType.GOLD)
             invItems.Remove(itemId);
             
-        }
-        else
-        {
-            invItems[itemId].Quantity = quantity;
-        }
     }
 
     public Vector2Int? GetFreeSpace(int itemId)

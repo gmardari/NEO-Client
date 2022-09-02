@@ -43,9 +43,7 @@ public class CharacterSelect : MonoBehaviour
             //Set character preview
             panel.Find("CharPrevContainer/CharacterPreview").GetComponent<CharacterPreview>().SetCharacterDef(EOManager.cs_defs[index]);
 
-            //int b = i;
-            login.GetComponent<Button>().onClick.AddListener(() => OnCharLoginClick(index));
-            delete.GetComponent<Button>().onClick.AddListener(() => OnCharDeleteClick(index));
+            
         }
         else
         {
@@ -69,12 +67,12 @@ public class CharacterSelect : MonoBehaviour
         delete.gameObject.SetActive(visible);
     }
 
-    private void OnCharLoginClick(int b)
+    public void OnCharLoginClick(int b)
     {
         UIManager.Singleton.OnCharacterLoginClick(b);
     }
 
-    private void OnCharDeleteClick(int b)
+    public void OnCharDeleteClick(int b)
     {
 
     }
@@ -100,6 +98,11 @@ public class CharacterSelect : MonoBehaviour
     public void OnPasswordBtnClick()
     {
 
+    }
+
+    public void OnExit()
+    {
+      
     }
 
     // Update is called once per frame

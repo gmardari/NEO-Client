@@ -1,3 +1,4 @@
+using EO;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,20 +24,20 @@ public class ResourceLibrary : MonoBehaviour
     public Tile[] overlayLayerTiles;
     [HideInInspector]
     public Tile[] wallLayerTiles;
+    /*
     [HideInInspector]
     public Sprite[] itemDropSprites;
-    [HideInInspector]
-    public Sprite[] itemSprites;
-    [HideInInspector]
-    public Sprite[] bootsSprites;
-    [HideInInspector]
-    public Sprite[] armorSprites;
-    [HideInInspector]
-    public Sprite[] weaponSprites;
-    [HideInInspector]
-    public Sprite[] hairStyleMaleSprites;
-    [HideInInspector]
-    public Sprite[] hairStyleFemaleSprites;
+    */
+   
+    private Sprite[] itemSprites;
+    private Sprite[][] bootsSprites_male;
+    private Sprite[][] bootsSprites_female;
+    private Sprite[][] armorSprites_male;
+    private Sprite[][] armorSprites_female;
+    private Sprite[][] weaponSprites_male;
+    private Sprite[][] weaponSprites_female;
+    private Sprite[] hairStyleMaleSprites;
+    private Sprite[] hairStyleFemaleSprites;
 
     public Sprite[] charSprites;
     public Sprite[] charWalkSprites;
@@ -55,6 +56,8 @@ public class ResourceLibrary : MonoBehaviour
     public Sprite[] npcSprites;
 
     public Sprite[] headBar_dmgSprites;
+    public uint[] goldGfxIds;
+    public uint[] goldThreshold; 
 
     public AudioClip[] music;
     public AudioClip[] sfx;
@@ -67,23 +70,26 @@ public class ResourceLibrary : MonoBehaviour
         objLayerTiles = Resources.LoadAll<Tile>("Tiles/Objects");
         overlayLayerTiles = Resources.LoadAll<Tile>("Tiles/Overlay");
         wallLayerTiles = Resources.LoadAll<Tile>("Tiles/Walls");
-        var allItemSprites = Resources.LoadAll<Sprite>("Sprites/gfx023");
-        armorSprites = Resources.LoadAll<Sprite>("Sprites/gfx013");
-        bootsSprites = Resources.LoadAll<Sprite>("Sprites/gfx011");
-        weaponSprites = Resources.LoadAll<Sprite>("Sprites/gfx017");
+        //var allItemSprites = Resources.LoadAll<Sprite>("Sprites/gfx023");
+       
+        //bootsSprites = Resources.LoadAll<Sprite>("Sprites/gfx011");
+        
         hairStyleMaleSprites = Resources.LoadAll<Sprite>("Sprites/gfx009");
         hairStyleFemaleSprites = Resources.LoadAll<Sprite>("Sprites/gfx010");
         npcSprites = Resources.LoadAll<Sprite>("Sprites/gfx021");
 
         Array.Sort(groundLayerTiles, CompareTiles);
         Array.Sort(wallLayerTiles, CompareTiles);
-        Array.Sort(allItemSprites, CompareSprites);
-        Array.Sort(armorSprites, CompareSprites);
-        Array.Sort(bootsSprites, CompareSprites);
-        Array.Sort(weaponSprites, CompareSprites);
+        //Array.Sort(allItemSprites, CompareSprites);
+        //Array.Sort(bootsSprites, CompareSprites);
         Array.Sort(npcSprites, CompareSprites);
-        
 
+        LoadWeaponSprites();
+        LoadArmorSprites();
+        LoadBootSprites();
+        LoadItemSprites();
+        
+        /*
         itemDropSprites = new Sprite[(int) Mathf.Ceil( ((float) allItemSprites.Length) / 2f)];
         itemSprites = new Sprite[allItemSprites.Length / 2];
         
@@ -94,6 +100,7 @@ public class ResourceLibrary : MonoBehaviour
             itemDropSprites[a] = allItemSprites[i];
             itemSprites[a] = allItemSprites[i + 1];
         }
+        */
 
         /*
         for(int a = 0; a < (allItemSprites.Length / 2); a++)
@@ -104,6 +111,307 @@ public class ResourceLibrary : MonoBehaviour
         */
     }
 
+    public void LoadWeaponSprites()
+    {
+        //Male
+        {
+            var wSprites = Resources.LoadAll<Sprite>("Sprites/gfx017");
+            Array.Sort(wSprites, CompareSprites);
+
+            int numWeapons = int.Parse(wSprites[wSprites.Length - 1].name) / 100;
+            weaponSprites_male = new Sprite[numWeapons][];
+
+            int w = 1;
+            int len = 0;
+
+            for (int i = 0; i < wSprites.Length; i++)
+            {
+                int j = int.Parse(wSprites[i].name) / 100;
+
+                if (w != j)
+                {
+                    //Add all the sprites to the array
+                    weaponSprites_male[w - 1] = new Sprite[len];
+
+                    int l = 0;
+                    for (int k = i - 1; k > (i - 1 - len); k--)
+                    {
+                        weaponSprites_male[w - 1][len - 1 - l] = wSprites[k];
+                        l++;
+                    }
+
+                    w = j;
+                    len = 0;
+
+
+                }
+
+                len++;
+            }
+
+            weaponSprites_male[w - 1] = new Sprite[len];
+
+            int ii = wSprites.Length - 1;
+            int ll = 0;
+            for (int k = ii - 1; k > (ii - 1 - len); k--)
+            {
+                weaponSprites_male[w - 1][len - 1 - ll] = wSprites[k];
+                ll++;
+            }
+        }
+
+        //Female
+        {
+            var wSprites = Resources.LoadAll<Sprite>("Sprites/gfx018");
+            Array.Sort(wSprites, CompareSprites);
+
+            int numWeapons = int.Parse(wSprites[wSprites.Length - 1].name) / 100;
+            weaponSprites_female = new Sprite[numWeapons][];
+
+            int w = 1;
+            int len = 0;
+
+            for (int i = 0; i < wSprites.Length; i++)
+            {
+                int j = int.Parse(wSprites[i].name) / 100;
+
+                if (w != j)
+                {
+                    //Add all the sprites to the array
+                    weaponSprites_female[w - 1] = new Sprite[len];
+
+                    int l = 0;
+                    for (int k = i - 1; k > (i - 1 - len); k--)
+                    {
+                        weaponSprites_female[w - 1][len - 1 - l] = wSprites[k];
+                        l++;
+                    }
+
+                    w = j;
+                    len = 0;
+
+
+                }
+
+                len++;
+            }
+
+            weaponSprites_female[w - 1] = new Sprite[len];
+
+            int ii = wSprites.Length - 1;
+            int ll = 0;
+            for (int k = ii - 1; k > (ii - 1 - len); k--)
+            {
+                weaponSprites_female[w - 1][len - 1 - ll] = wSprites[k];
+                ll++;
+            }
+        }
+    }
+
+    public void LoadArmorSprites()
+    {
+        //Male
+        {
+            List<Sprite[]> arrays = new List<Sprite[]>();
+            var sprites = Resources.LoadAll<Sprite>("Sprites/gfx013");
+            Array.Sort(sprites, CompareSprites);
+
+            Sprite[] arr;
+            int len = 0;
+            for (int i = 0; i < sprites.Length; i++)
+            {
+                if ((i + 1) < sprites.Length)
+                {
+                    int index1 = int.Parse(sprites[i].name);
+                    int index2 = int.Parse(sprites[i + 1].name);
+
+                    len++;
+
+                    if (index2 - index1 > 1)
+                    {
+                        arr = new Sprite[len];
+                        for (int k = 0; k < len; k++)
+                        {
+                            arr[k] = sprites[i - len + 1 + k];
+                        }
+                        arrays.Add(arr);
+                        len = 0;
+                    }
+                }
+            }
+
+            int ii = sprites.Length - 1;
+            arr = new Sprite[len];
+            for (int k = 0; k < len; k++)
+            {
+                arr[k] = sprites[ii - len + 1 + k];
+            }
+            arrays.Add(arr);
+
+            armorSprites_male = arrays.ToArray();
+        }
+
+        //Female
+        {
+            List<Sprite[]> arrays = new List<Sprite[]>();
+            var sprites = Resources.LoadAll<Sprite>("Sprites/gfx014");
+            Array.Sort(sprites, CompareSprites);
+
+            Sprite[] arr;
+            int len = 0;
+            for (int i = 0; i < sprites.Length; i++)
+            {
+                if ((i + 1) < sprites.Length)
+                {
+                    int index1 = int.Parse(sprites[i].name);
+                    int index2 = int.Parse(sprites[i + 1].name);
+
+                    len++;
+
+                    if (index2 - index1 > 1)
+                    {
+                        arr = new Sprite[len];
+                        for (int k = 0; k < len; k++)
+                        {
+                            arr[k] = sprites[i - len + 1 + k];
+                        }
+                        arrays.Add(arr);
+                        len = 0;
+                    }
+                }
+            }
+
+            int ii = sprites.Length - 1;
+            arr = new Sprite[len];
+            for (int k = 0; k < len; k++)
+            {
+                arr[k] = sprites[ii - len + 1 + k];
+            }
+            arrays.Add(arr);
+
+            armorSprites_female = arrays.ToArray();
+        }
+    }
+
+    public void LoadBootSprites()
+    {
+        //Male
+        {
+            List<Sprite[]> arrays = new List<Sprite[]>();
+            var sprites = Resources.LoadAll<Sprite>("Sprites/gfx011");
+            Array.Sort(sprites, CompareSprites);
+
+            Sprite[] arr;
+            int len = 0;
+            for (int i = 0; i < sprites.Length; i++)
+            {
+                if ((i + 1) < sprites.Length)
+                {
+                    int index1 = int.Parse(sprites[i].name);
+                    int index2 = int.Parse(sprites[i + 1].name);
+
+                    len++;
+
+                    if (index2 - index1 > 1)
+                    {
+                        arr = new Sprite[len];
+                        for (int k = 0; k < len; k++)
+                        {
+                            arr[k] = sprites[i - len + 1 + k];
+                        }
+                        arrays.Add(arr);
+                        len = 0;
+                    }
+                }
+            }
+
+            int ii = sprites.Length - 1;
+            arr = new Sprite[len];
+            for (int k = 0; k < len; k++)
+            {
+                arr[k] = sprites[ii - len + 1 + k];
+            }
+            arrays.Add(arr);
+
+            bootsSprites_male = arrays.ToArray();
+        }
+
+        //Female
+        {
+            List<Sprite[]> arrays = new List<Sprite[]>();
+            var sprites = Resources.LoadAll<Sprite>("Sprites/gfx012");
+            Array.Sort(sprites, CompareSprites);
+
+            Sprite[] arr;
+            int len = 0;
+            for (int i = 0; i < sprites.Length; i++)
+            {
+                if ((i + 1) < sprites.Length)
+                {
+                    int index1 = int.Parse(sprites[i].name);
+                    int index2 = int.Parse(sprites[i + 1].name);
+
+                    len++;
+
+                    if (index2 - index1 > 1)
+                    {
+                        arr = new Sprite[len];
+                        for (int k = 0; k < len; k++)
+                        {
+                            arr[k] = sprites[i - len + 1 + k];
+                        }
+                        arrays.Add(arr);
+                        len = 0;
+                    }
+                }
+            }
+
+            int ii = sprites.Length - 1;
+            arr = new Sprite[len];
+            for (int k = 0; k < len; k++)
+            {
+                arr[k] = sprites[ii - len + 1 + k];
+            }
+            arrays.Add(arr);
+
+            bootsSprites_female = arrays.ToArray();
+        }
+    }
+
+    public void LoadItemSprites()
+    {
+        var sprites = Resources.LoadAll<Sprite>("Sprites/gfx023");
+        Array.Sort(sprites, CompareSprites);
+
+        int lastIndex = int.Parse(sprites[sprites.Length - 1].name);
+        int startIndex = int.Parse(sprites[0].name);
+        int len = lastIndex - startIndex + 1;
+        
+        itemSprites = new Sprite[len];
+
+        int j = 0;
+        for (int i = 0; i < sprites.Length; i++)
+        {
+            if ((i + 1) < sprites.Length)
+            {
+                int index1 = int.Parse(sprites[i].name);
+                int index2 = int.Parse(sprites[i + 1].name);
+                itemSprites[j++] = sprites[i];
+
+                if (index2 - index1 > 1)
+                {
+                    for(int k = 1; k < (index2 - index1); k++)
+                    {
+                        itemSprites[j++] = null;
+                    }
+                }
+            }
+            else
+                itemSprites[j++] = sprites[i];
+        }
+
+        Debug.Log($"Loaded {len} item sprites");
+    }
 
     public Sprite[] GetCharSprites(ushort gender, ushort race)
     {
@@ -172,7 +480,7 @@ public class ResourceLibrary : MonoBehaviour
         return sprites;
 
     }
-
+    /*
     public Sprite[] GetArmorSprites(uint gfxId)
     {
         int startIndex = (int) gfxId * ARMOR_SPRITES_NUM;
@@ -185,7 +493,28 @@ public class ResourceLibrary : MonoBehaviour
 
         return sprites;
     }
+    */
 
+    //TODO: Implement gender swapping armors
+    public Sprite[] GetArmorSprites(byte gender, uint gfxId)
+    {
+        switch(gender)
+        {
+            case 0:
+                if ((gfxId - 1) >= armorSprites_female.Length)
+                    return null;
+
+                return armorSprites_female[gfxId - 1];
+            case 1:
+                if ((gfxId - 1) >= armorSprites_male.Length)
+                    return null;
+
+                return armorSprites_male[gfxId - 1];
+        }
+      
+        return null;
+    }
+    /*
     public Sprite[] GetBootSprites(uint gfxId)
     {
         int startIndex = (int) gfxId * BOOT_SPRITES_NUM;
@@ -198,7 +527,29 @@ public class ResourceLibrary : MonoBehaviour
 
         return sprites;
     }
+    */
 
+    public Sprite[] GetBootSprites(byte gender, uint gfxId)
+    {
+        switch(gender)
+        {
+            case 0:
+                if ((gfxId - 1) >= bootsSprites_female.Length)
+                    return null;
+
+                return bootsSprites_female[gfxId - 1];
+
+            case 1:
+                if ((gfxId - 1) >= bootsSprites_male.Length)
+                    return null;
+
+                return bootsSprites_male[gfxId - 1];
+        }
+
+        return null;
+    }
+
+    /*
     public Sprite[] GetWeaponSprites(uint gfxId)
     {
         int startIndex = (int)gfxId * WEAPON_SPRITES_NUM;
@@ -211,7 +562,27 @@ public class ResourceLibrary : MonoBehaviour
 
         return sprites;
     }
+    */
 
+    public Sprite[] GetWeaponSprites(byte gender, uint gfxId)
+    {
+        switch(gender)
+        {
+            case 0:
+                if ((gfxId - 1) >= weaponSprites_female.Length)
+                    return null;
+
+                return weaponSprites_female[gfxId - 1];
+            case 1:
+                if ((gfxId - 1) >= weaponSprites_male.Length)
+                    return null;
+
+                return weaponSprites_male[gfxId - 1];
+        }
+
+        return null;
+    }
+    
     public Sprite[] GetNpcIdleSprites(uint gfxId)
     {
         int startIndex = 16 * (int) gfxId;
@@ -255,6 +626,57 @@ public class ResourceLibrary : MonoBehaviour
         Array.Copy(npcSprites, startIndex, sprites, 0, 4);
 
         return sprites;
+    }
+
+    public Sprite GetDropItemSprite(uint gfxId)
+    {
+        uint index = (gfxId - 1) * 2;
+
+        if (index >= itemSprites.Length)
+            return null;
+
+        return itemSprites[index];
+    }
+
+    public Sprite GetInvItemSprite(uint gfxId)
+    {
+        uint index = (gfxId - 1) * 2 + 1;
+
+        if (index >= itemSprites.Length)
+            return null;
+
+        return itemSprites[index];
+    }
+
+    public Sprite[] GetItemBodySprites(byte gender, uint itemId)
+    {
+        ItemDataEntry entry = DataFiles.Singleton.GetItemData((int)itemId);
+        ItemType type = (ItemType)entry.itemType;
+
+        switch(type)
+        {
+            case ItemType.WEAPON:
+                return GetWeaponSprites(gender, entry.bodyGfx);
+            case ItemType.ARMOR:
+                return GetArmorSprites(gender, entry.bodyGfx);
+            case ItemType.BOOTS:
+                return GetBootSprites(gender, entry.bodyGfx);
+        }
+
+        return null;
+    }
+
+    public Sprite GetGoldDropSprite(uint amount)
+    {
+        for(int i = goldThreshold.Length - 1; i >= 0; i--)
+        {
+            if(amount >= goldThreshold[i])
+            {
+                return GetDropItemSprite(goldGfxIds[i]);
+            }
+        }
+
+        return null;
     }
 
     private int CompareTiles(Tile x, Tile y)

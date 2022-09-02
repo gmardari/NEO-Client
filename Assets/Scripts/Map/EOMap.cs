@@ -117,7 +117,7 @@ namespace EO.Map
             else
             {
                 //Operations on packets
-                if(packetQueue.Count > 0)
+                while(packetQueue.Count > 0)
                 {
                     HandlePackets();
                 }
@@ -403,7 +403,7 @@ namespace EO.Map
             {
                 var cp = packet as SetItemDef;
 
-                AddItemEntity(cp.entityId, (int) cp.itemId, new Vector2Int(cp.x, cp.y));
+                AddItemEntity(cp.entityId, cp.itemId, cp.quantity, new Vector2Int(cp.x, cp.y));
             }
             else if (packet is SetPlayerInvItem)
             {
@@ -631,7 +631,8 @@ namespace EO.Map
         {
             if(entities.Remove(entityId, out GameObject entityObj))
             {
-                entities.Remove(entityId);
+                Vector2Int net_pos = utils.GetEntityNetPos(entityObj);
+                GetCell(net_pos).RemoveEntityFromId(entityId);
                 Destroy(entityObj);
             }
         }
@@ -670,7 +671,7 @@ namespace EO.Map
         }
 
 
-        public void AddItemEntity(ulong entityId, int itemId, Vector2Int cellPos)
+        public void AddItemEntity(ulong entityId, uint itemId, uint quantity, Vector2Int cellPos)
         {
             Cell cell = GetCell(cellPos);
 
@@ -679,13 +680,9 @@ namespace EO.Map
             worldSpace.y += 0.25f; //16 pixels up, tile.height / 2
 
             GameObject obj = Instantiate(itemPrefab, worldSpace, Quaternion.identity, entitiesContainer.transform);
-
-            //Setup sprite
-            uint gfxId = DataFiles.Singleton.itemDataFile.entries[itemId].displayGfx;
-            obj.GetComponent<SpriteRenderer>().sprite = ResourceLibrary.Singleton.itemDropSprites[gfxId];
             
             //Setup item object
-            ItemEntity item = new ItemEntity(entityId, itemId, obj);
+            ItemEntity item = new ItemEntity(entityId, itemId, quantity, obj);
             item.GetDef().Init(entityId, EntityType.ITEM, mapId, cellPos);
             
             //Add to arrays

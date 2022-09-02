@@ -4,6 +4,25 @@ using UnityEngine;
 using EO;
 using EO.Inventory;
 
+public enum ItemType : uint
+{
+    GOLD,
+    STATIC,
+    POTION,
+    HAT,
+    ARMOR,
+    WEAPON,
+    NECKLACE,
+    BACK,
+    GLOVES,
+    BELT,
+    CHARM,
+    BOOTS,
+    RING,
+    BRACELET,
+    BRACER
+}
+
 public interface I_UIItem
 {
     public uint ItemId { get; }
@@ -30,7 +49,8 @@ public class InventoryItem : I_UIItem
         set
         {
             quantity = value;
-            if (quantity == 0)
+
+            if (quantity == 0 && type != ItemType.GOLD)
                 Destroy();
         }
     }

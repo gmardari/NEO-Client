@@ -33,9 +33,23 @@ public class Cell
         entities.AddLast(entity);
     }
 
-    public void RemoveEntity(IEntity entity)
+    public bool RemoveEntity(IEntity entity)
     {
-        entities.Remove(entity);
+        return entities.Remove(entity);
+    }
+
+    public bool RemoveEntityFromId(ulong entityId)
+    {
+        for(var node = entities.First; node != null; node = node.Next)
+        {
+            if(node.Value.EntityId == entityId)
+            {
+                entities.Remove(node);
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public bool HasEntity(IEntity entity)

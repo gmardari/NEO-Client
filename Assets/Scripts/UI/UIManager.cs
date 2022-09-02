@@ -35,10 +35,10 @@ public class UIManager : MonoBehaviour
     private GameObject expBar;
 
 
-    private bool canTransition;
-    private bool waitingForConnection;
-    private bool willOpenLogin;             //After connection is open, opens the login panel if true, otherwise, open account creation page
-    private bool waitingForCharacters;
+    public bool canTransition;
+    public bool waitingForConnection;
+    public bool willOpenLogin;             //After connection is open, opens the login panel if true, otherwise, open account creation page
+    public bool waitingForCharacters;
 
     // Start is called before the first frame update
     void Awake()
@@ -69,12 +69,14 @@ public class UIManager : MonoBehaviour
         Transform mainButtonPanel = startMenu.transform.Find("MainButtonPanel");
         Transform loginPanel = startMenu.transform.Find("LoginPanel");
 
+        /*
         mainButtonPanel.Find("CreateAcc").GetComponent<Button>().onClick.AddListener(() => OnCreateAccClick());
         mainButtonPanel.Find("Play").GetComponent<Button>().onClick.AddListener(() => OnPlayGameClick(startMenu));
         mainButtonPanel.Find("Exit").GetComponent<Button>().onClick.AddListener(() => OnExitGameClick(startMenu));
 
-        loginPanel.Find("Cancel").GetComponent<Button>().onClick.AddListener(() => OnLoginCancelClick(startMenu));
+        loginPanel.Find("Cancel").GetComponent<Button>().onClick.AddListener(() => OnLoginCancelClick());
         loginPanel.Find("Connect").GetComponent<Button>().onClick.AddListener(OnLoginConnect);
+        */
 
         EOManager.Singleton.OnLoginSucceed += OnLoginSucceed;
         EOManager.Singleton.OnCSLoaded += OnCSLoaded;
@@ -150,6 +152,7 @@ public class UIManager : MonoBehaviour
                 guiBranch = startMenu;
                 guiBranch.SetActive(true);
                 guiBranch.transform.Find("LoginPanel").gameObject.SetActive(true);
+                guiBranch.transform.Find("LoginPanel/UsernameInput").gameObject.GetComponent<TMP_InputField>().Select();
                 break;
 
             case UIState.CHARACTER_SELECT:
@@ -311,7 +314,7 @@ public class UIManager : MonoBehaviour
         EOManager.Singleton.EnterWorld(char_index);
     }
 
-    public void OnLoginCancelClick(GameObject startMenu)
+    public void OnLoginCancelClick()
     {
         if (state == UIState.LOGIN)
         {
@@ -364,6 +367,7 @@ public class UIManager : MonoBehaviour
 
                 break;
 
+                //TODO: Put in UIGame.cs
             case UIState.IN_GAME:
                 {
                     if(EOManager.eo_map.IsLoaded && EOManager.player != null)

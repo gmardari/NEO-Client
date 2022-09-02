@@ -356,7 +356,7 @@ public class EOManager : MonoBehaviour
         {
             packetManager.Update(Time.deltaTime);
 
-            if (incomingPackets.Count > 0)
+            while (incomingPackets.Count > 0)
             {
                 Packet packet = incomingPackets.Dequeue();
                 //Debug.Log($"Reading packet of type: {packet.GetType()}");
@@ -383,7 +383,7 @@ public class EOManager : MonoBehaviour
                         if (packet is LoginResponse)
                         {
                             var cp = (LoginResponse) packet;
-
+                            
                             Debug.Log($"LOGIN RESPONSE: {cp.responseMsg}");
 
                             if (cp.response == 200)
@@ -394,6 +394,10 @@ public class EOManager : MonoBehaviour
                                 session.state = NetworkSessionState.AUTH;
                                 isWaitingCharacters = true;
                                 SendPacket(new RequestResource((byte)RESOURCE_TYPE.CS_CHARACTERS));
+                            }
+                            else
+                            {
+                                UIManager.Singleton.ShowGameDialog("Login", "Login: " + cp.responseMsg);
                             }
 
                         }
@@ -500,7 +504,7 @@ public class EOManager : MonoBehaviour
                                     isGameInit = true;
                                     isEnteringWorld = false;
 
-                                    DataFiles.Singleton.LoadDataFiles();
+                                   
 
                                     if(OnWorldEnter != null)
                                         OnWorldEnter();

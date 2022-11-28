@@ -24,7 +24,7 @@ public class PaperdollManager : MonoBehaviour
     [HideInInspector]
     public GameObject owner;
 
-    public static uint NUM_SLOTS = 15;
+    public const uint NUM_SLOTS = 15;
 
     
     void Awake()
@@ -43,6 +43,9 @@ public class PaperdollManager : MonoBehaviour
         uiPaperdoll.SetActive(true);
         isOpened = true;
         owner = playerObj;
+
+        Debug.Log("Showing paperdoll of player " + eochar.CharacterName);
+        Debug.Log(paperdoll);
 
         if (paperdoll.armor > 0)
         {
@@ -97,16 +100,18 @@ public class PaperdollManager : MonoBehaviour
 
     public void AddItem(PaperdollSlot slot, uint itemId)
     {
-        GameObject obj = Instantiate(uiItemPrefab);
-        InvListener listener = obj.GetComponent<InvListener>();
-        ItemDataEntry data = DataFiles.Singleton.itemDataFile.entries[(int)itemId];
-        PaperdollItem item = new PaperdollItem(slot, itemId, listener, data);
+        Transform parent = PaperdollManager.Singleton.slotsContainer.transform.GetChild((int)slot);
+        //parent transform must be set for it to properly work
+        GameObject obj = Instantiate(uiItemPrefab, parent);
+        PaperdollItem item = new PaperdollItem(slot, itemId, obj);
+
         //Positioning automatically occurs in the constructor
-        listener.Init(item);
-        listener.SetUIPosition();
+        //item.UI.Init(item);
+        //item.UI.SetUIPosition();
 
         int slotIndex = (int)slot;
         items[slotIndex] = item;
+        Debug.Log($"Added item {item.Name} at slot {slot}");
     }
 
     public void RemoveItem(uint slotIndex)
@@ -120,20 +125,20 @@ public class PaperdollManager : MonoBehaviour
     }
 
     //Might not work? TODO: Check if works
-    public void EditPaperdoll(GameObject playerObj, CharacterDef def, SetPaperdollSlot packet)
+    public void EditPaperdoll(GameObject playerObj, CharacterDef def, byte slotIndex, uint itemId)
     {
-        if (packet.slotIndex < 0 || packet.slotIndex >= NUM_SLOTS)
+        if (slotIndex < 0 || slotIndex >= NUM_SLOTS)
         {
-            Debug.LogWarning($"Can't edit paperdoll with invalid slotIndex: {packet.slotIndex}");
+            Debug.LogWarning($"Can't edit paperdoll with invalid slotIndex: {slotIndex}");
             return;
         }
         //packet.itemId is shifted by +1 (so packet.itemId - 1 is the real item Id)
         //uint val = (packet.equipped) ? packet.itemId : 0;
-        uint val = packet.itemId;
 
-        PaperdollSlot slot = (PaperdollSlot)packet.slotIndex;
+        bool equipped = itemId != 0;
+        PaperdollSlot slot = (PaperdollSlot) slotIndex;
         //Set paperdoll
-        def.doll.Set(slot, val);
+        def.doll.Set(slot, itemId);
 
         //Make sure we are in game
         if (UIManager.Singleton.state != UIState.IN_GAME)
@@ -142,11 +147,11 @@ public class PaperdollManager : MonoBehaviour
         //Set UI elements
         if(isOpened && owner == playerObj)
         {
-            RemoveItem(packet.slotIndex);
+            RemoveItem(slotIndex);
 
-            if (packet.equipped)
+            if (equipped)
             {
-                AddItem(slot, packet.itemId - 1);
+                AddItem(slot, itemId - 1);
             }
         }
     }

@@ -84,6 +84,7 @@ public class EONpc : MonoBehaviour
             net_state = NpcState.ATTACK;
 
             net_attackAnim = new AttackAnim(net_direction, packet.timeStarted);
+            AudioManager.Singleton.PlayAtPoint(9, net_position);
         }
     }
 

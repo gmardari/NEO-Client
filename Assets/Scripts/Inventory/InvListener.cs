@@ -8,7 +8,6 @@ using EO;
 public class InvListener : MonoBehaviour
 {
     public I_UIItem item;
-    public bool isPaperdoll;
     public UIItemType type;
 
     private RectTransform rectTransform;
@@ -26,7 +25,7 @@ public class InvListener : MonoBehaviour
         this.item = item;
         //this.isPaperdoll = item is PaperdollItem;
 
-        if (item is InventoryItem)
+        if (item is PlayerItem)
         {
             type = UIItemType.PLAYER_INV;
         }
@@ -41,7 +40,7 @@ public class InvListener : MonoBehaviour
 
         if (type == UIItemType.PLAYER_INV || type == UIItemType.PAPERDOLL)
         {
-            ItemDataEntry data = DataFiles.Singleton.GetItemData((int)item.ItemId);
+            ItemDataEntry data = DataFiles.Singleton.GetItemData(item.ItemId);
 
             uint gfxId = data.displayGfx;
             Image image = GetComponent<Image>();
@@ -51,6 +50,7 @@ public class InvListener : MonoBehaviour
             //Vector3 spriteSize = image.sprite.bounds.size * 64f;
             Vector2 imageSize = new Vector2(data.sizeX * 25f, data.sizeY * 25f);
 
+            
             rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, imageSize.x);
             rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, imageSize.y);
         }
@@ -64,7 +64,7 @@ public class InvListener : MonoBehaviour
     {
         if (type == UIItemType.PLAYER_INV)
         {
-            var invItem = item as InventoryItem;
+            var invItem = item as PlayerItem;
 
             rectTransform.SetParent(InvManager.Singleton.invContainer.transform);
             rectTransform.anchoredPosition = new Vector2(invItem.position.x * 26f, -invItem.position.y * 27f);
@@ -85,7 +85,7 @@ public class InvListener : MonoBehaviour
     {
         if(type == UIItemType.CHEST_INV)
         {
-            ItemDataEntry data = DataFiles.Singleton.GetItemData((int)item.ItemId);
+            ItemDataEntry data = DataFiles.Singleton.GetItemData(item.ItemId);
 
             uint gfxId = data.displayGfx;
             ChestItem chestItem = (ChestItem)item;

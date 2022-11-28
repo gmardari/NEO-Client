@@ -79,9 +79,9 @@ public class DataFiles : MonoBehaviour
         return null;
     }
 
-    public ItemDataEntry GetItemData(int itemId)
+    public ItemDataEntry GetItemData(uint itemId)
     {
-        return itemDataFile.entries[itemId];
+        return itemDataFile.entries[(int)itemId];
     }
 
     public void SaveDataFile(NpcDataFile dataFile, bool overwrite)

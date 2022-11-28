@@ -78,9 +78,9 @@ public class UIManager : MonoBehaviour
         loginPanel.Find("Connect").GetComponent<Button>().onClick.AddListener(OnLoginConnect);
         */
 
-        EOManager.Singleton.OnLoginSucceed += OnLoginSucceed;
-        EOManager.Singleton.OnCSLoaded += OnCSLoaded;
-        EOManager.Singleton.OnAccCreate += OnAccCreate;
+        EOManager.OnLoginSucceed += OnLoginSucceed;
+        //EOManager.OnCSLoaded += OnCSLoaded;
+        //EOManager.OnAccCreate += OnAccCreate;
     }
 
     public void StartGameOverlay()
@@ -91,10 +91,11 @@ public class UIManager : MonoBehaviour
         var overlay = gameGui.transform.Find("Overlay");
         var paperdoll = gameGui.transform.Find("Paperdoll");
         var chestDisplay = gameGui.transform.Find("ChestDisplay");
+        var display = gameGui.transform.Find("Display");
 
         overlay.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.1f;
         //Attach button listeners
-        gameGui.transform.Find("Inventory/PaperdollButton").GetComponent<Button>().onClick.AddListener(PaperdollManager.Singleton.OnPaperdollBtnClick);
+        display.Find("Inventory/PaperdollButton").GetComponent<Button>().onClick.AddListener(PaperdollManager.Singleton.OnPaperdollBtnClick);
         paperdoll.Find("OK").GetComponent<Button>().onClick.AddListener(PaperdollManager.Singleton.OnOkBtnClick);
 
         guiBranch = gameGui;
@@ -102,7 +103,7 @@ public class UIManager : MonoBehaviour
         PaperdollManager.Singleton.uiPaperdoll = paperdoll.gameObject;
         PaperdollManager.Singleton.slotsContainer = paperdoll.Find("Slots").gameObject;
         PaperdollManager.Singleton.ui_properties = paperdoll.Find("Properties").gameObject;
-        InvManager.Singleton.invContainer = gameGui.transform.Find("Inventory/Items").gameObject;
+        InvManager.Singleton.invContainer = display.Find("Inventory/Items").gameObject;
         ChestInvManager.Singleton.invDisplay = chestDisplay.gameObject;
         //chestDisplay.Find("Footer/Close").GetComponent<Button>().onClick.AddListener(ChestInvManager.Singleton.OnCloseBtnClick);
         
@@ -126,6 +127,20 @@ public class UIManager : MonoBehaviour
         gameDialog.transform.Find("Message").GetComponent<TMP_Text>().text = message;
         gameDialog.transform.Find("OK").GetComponent<Button>().onClick.AddListener(() => 
         { Destroy(gameDialog); gameDialog = null; });
+    }
+
+    public void ShowGameDialog(string title, string message, Action onConfirm)
+    {
+        if (gameDialog != null)
+        {
+            Destroy(gameDialog);
+        }
+
+        gameDialog = Instantiate(gameDialogPrefab, transform);
+        gameDialog.transform.Find("Title").GetComponent<TMP_Text>().text = title;
+        gameDialog.transform.Find("Message").GetComponent<TMP_Text>().text = message;
+        gameDialog.transform.Find("OK").GetComponent<Button>().onClick.AddListener(() =>
+        { Destroy(gameDialog); gameDialog = null; onConfirm(); });
     }
 
     //TODO: Handle from In Game -> Main Menu
@@ -307,10 +322,10 @@ public class UIManager : MonoBehaviour
 
     public void OnCharacterLoginClick(int char_index)
     {
-        CharacterDef def = EOManager.cs_defs[char_index];
+        CS_CharacterDef def = EOManager.cs_defs[char_index];
 
         Debug.Log($"Entering world with char {def.name}");
-        EOManager.Singleton.OnWorldEnter += OnWorldEnter;
+        EOManager.OnWorldEnter += OnWorldEnter;
         EOManager.Singleton.EnterWorld(char_index);
     }
 
@@ -345,11 +360,11 @@ public class UIManager : MonoBehaviour
     {
         switch(state)
         {
-            case UIState.MAIN_MENU:
-
+            /*case UIState.MAIN_MENU:
+                
                 if(waitingForConnection)
                 {
-                    if(EOManager.Singleton.session.state == NetworkSessionState.ACCEPTED)
+                    if(EOManager.GetSessionState() == NetworkSessionState.ACCEPTED)
                     {
                         waitingForConnection = false;
                         Debug.Log("Connection opened!!!");
@@ -361,7 +376,7 @@ public class UIManager : MonoBehaviour
                             SetState(UIState.ACCOUNT_CREATION);
                     }   
                 }
-                break;
+                break;*/
 
             case UIState.LOGIN:
 

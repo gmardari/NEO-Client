@@ -18,6 +18,7 @@ namespace EO
         private WalkAnim net_walkAnim = new WalkAnim();
         private AttackAnim net_attackAnim = new AttackAnim();
         public bool isLocalPlayer;
+        public string CharacterName => characterDef.name;
         
         //Accessors
         public Vector2Int net_position
@@ -117,14 +118,25 @@ namespace EO
                 cState = net_cState;
 
                 net_attackAnim = new AttackAnim(net_direction, packet.timeStarted);
+
+                if(characterDef.doll.weapon == 0)
+                    AudioManager.Singleton.PlayAtPoint(9, net_position);
+                else
+                    AudioManager.Singleton.PlayAtPoint(14, net_position);
             }
         }
 
-        public void NetSetPaperdoll(SetPaperdollSlot packet)
+/*        public void NetSetPaperdoll(SetPaperdollSlot packet)
         {
             PaperdollManager.Singleton.EditPaperdoll(this.gameObject, characterDef, packet);
             animator.OnCharacterDefChange();
 
+        }*/
+
+        public void NetSetPaperdoll(byte slotIndex, uint itemId)
+        {
+            PaperdollManager.Singleton.EditPaperdoll(this.gameObject, characterDef, slotIndex, itemId);
+            animator.OnCharacterDefChange();
         }
 
 

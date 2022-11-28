@@ -9,10 +9,29 @@ public class StartMenu : MonoBehaviour
     public TMP_InputField usernameInput;
     public TMP_InputField passwordInput;
     public GameObject loginPanel;
+    public GameObject mainPanel;
 
     void Awake()
     {
-        
+        foreach(Transform t in mainPanel.transform)
+        {
+            Button button = t.GetComponent<Button>();
+
+            if(button != null)
+            {
+                button.onClick.AddListener(() => AudioManager.Singleton.Play(1));
+            }
+        }
+
+        foreach (Transform t in loginPanel.transform)
+        {
+            Button button = t.GetComponent<Button>();
+
+            if (button != null)
+            {
+                button.onClick.AddListener(() => AudioManager.Singleton.Play(1));
+            }
+        }
     }
 
     public void OnCreateAccClick()
@@ -20,9 +39,18 @@ public class StartMenu : MonoBehaviour
 
         if (!EOManager.Connected)
         {
-            EOManager.Singleton.Connect();
-            UIManager.Singleton.waitingForConnection = true;
-            UIManager.Singleton.willOpenLogin = false;
+            if (!UIManager.Singleton.waitingForConnection)
+            {
+                EOManager.packetManager.Register(PacketType.HELLO_PACKET, 2.0f, (packet) => OnHelloPacketReceive(packet, UIState.ACCOUNT_CREATION),
+                () =>
+                {
+                    UIManager.Singleton.waitingForConnection = false;
+                    UIManager.Singleton.ShowGameDialog("No connection", "Failed to connect to server");
+                });
+                EOManager.Singleton.Connect();
+                UIManager.Singleton.waitingForConnection = true;
+                UIManager.Singleton.willOpenLogin = false;
+            }   
         }
         else
         {
@@ -36,11 +64,20 @@ public class StartMenu : MonoBehaviour
 
         if (!EOManager.Connected)
         {
-            EOManager.Singleton.Connect();
-            UIManager.Singleton.waitingForConnection = true;
-            UIManager.Singleton.willOpenLogin = true;
+            if(!UIManager.Singleton.waitingForConnection)
+            {
+                EOManager.packetManager.Register(PacketType.HELLO_PACKET, 2.0f, (packet) => OnHelloPacketReceive(packet, UIState.LOGIN), 
+                () =>
+                {
+                    UIManager.Singleton.waitingForConnection = false;
+                    UIManager.Singleton.ShowGameDialog("No connection", "Failed to connect to server");
+                });
+                EOManager.Singleton.Connect();
+                UIManager.Singleton.waitingForConnection = true;
+                UIManager.Singleton.willOpenLogin = true;
+            }
         }
-        else
+        else if(EOManager.Singleton.GetSessionState() == NetworkSessionState.ACCEPTED)
         {
             //OpenLoginPanel();
             UIManager.Singleton.SetState(UIState.LOGIN);
@@ -83,6 +120,18 @@ public class StartMenu : MonoBehaviour
         loginPanel.SetActive(false);
         UIManager.Singleton.SetState(UIState.MAIN_MENU);
         
+    }
+
+    public void OnHelloPacketReceive(PacketReader packet, UIState uiState)
+    {
+        if (EOManager.Singleton.GetSessionState() == NetworkSessionState.PINGING)
+        {
+            UIManager.Singleton.waitingForConnection = false;
+            EOManager.Singleton.SetSessionState(NetworkSessionState.ACCEPTED);
+            UIManager.Singleton.SetState(uiState);
+
+            Debug.Log("Connection opened!!!");
+        }
     }
 
     // Update is called once per frame

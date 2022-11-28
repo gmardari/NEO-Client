@@ -1024,6 +1024,7 @@ MonoBehaviour:
   usernameInput: {fileID: 3335582743216328192}
   passwordInput: {fileID: 6202522132019786007}
   loginPanel: {fileID: 4801124026685823393}
+  mainPanel: {fileID: 4801124025738323690}
 --- !u!1 &4801124026020251650
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using UnityEngine;
 using EO;
 using EO.Inventory;
 
+
 public struct IntRange
 {
     public int min;
@@ -60,6 +61,22 @@ public enum EntityProperty : uint
     ENERGY, //ulong
     NAME,   //variable string
     CLASS   //variable string
+}
+
+public struct CS_CharacterDef
+{
+    public string name;
+    public byte gender;
+    public byte race;
+    public byte skinColour;
+    public byte hairStyle;
+    public byte hairColour;
+
+    public uint hat;
+    public uint armor;
+    public uint weapon;
+    public uint back;
+    public uint boots;
 }
 
 
@@ -150,7 +167,7 @@ public struct WalkAnim
     public int direction;
     public bool valid;
     //The time needed for one full walk animation
-    public const long timeStep = 750;
+    public const long timeStep = 450;
     public long timeStarted;
 
     public WalkAnim(Vector2Int from, int direction, long timeStarted)

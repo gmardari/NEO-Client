@@ -43,10 +43,11 @@ public class MapCursor : MonoBehaviour
 
                 if (cell != null)
                 {
-                    ItemEntity item = cell.PopItem();
+                    Item item = cell.PopItem();
                     if(item != null)
                     {
-                        EOManager.Singleton.PickupItem(item);
+                        //TODO: Implement pick up item method
+                        //EOManager.Singleton.PickupItem(item);
                     }
                 }
             }

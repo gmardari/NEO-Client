@@ -169,6 +169,54 @@ namespace EO.Inventory
                     break;
             }
         }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            for(byte i = 0; i < (byte) PaperdollSlot.BRACER_2; i++)
+            {
+                PaperdollSlot slot = (PaperdollSlot)i;
+                uint itemId = GetItemId(slot);
+                string itemName = itemId > 0 ? DataFiles.Singleton.GetItemData(itemId - 1).name : "NONE";
+
+                sb.Append(slot.ToString());
+                sb.Append(": ");
+                sb.AppendLine(itemName);
+            }
+
+            return sb.ToString();
+        }
+
+        public static bool IsCorrectSlot(PlayerItem item, PaperdollSlot slot)
+        {
+            byte slotIndex = (byte)slot;
+
+            if (slotIndex <= (byte)PaperdollSlot.BOOTS)
+            {
+                uint itemTypeId = ((uint)item.ItemType) - (uint)ItemType.HAT;
+
+                return slotIndex == itemTypeId;
+            }
+
+            switch (slot)
+            {
+                case PaperdollSlot.RING_1:
+                    return item.ItemType == ItemType.RING;
+                case PaperdollSlot.RING_2:
+                    return item.ItemType == ItemType.RING;
+                case PaperdollSlot.BRACELET_1:
+                    return item.ItemType == ItemType.BRACELET;
+                case PaperdollSlot.BRACELET_2:
+                    return item.ItemType == ItemType.BRACELET;
+                case PaperdollSlot.BRACER_1:
+                    return item.ItemType == ItemType.BRACER;
+                case PaperdollSlot.BRACER_2:
+                    return item.ItemType == ItemType.BRACER;
+            }
+
+            return false;
+        }
     }
 
 }

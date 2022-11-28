@@ -73,7 +73,55 @@ public class AccountCreation : MonoBehaviour
 
         //Inputs are valid
         EOManager.Singleton.CreateAccount(username, password, realName, loc, email);
+        EOManager.packetManager.Register(PacketType.ACCOUNT_CREATE_RESPONSE, 2.0f, OnAccCreateResponse,
+           () => {
+               UIManager.Singleton.SetState(UIState.MAIN_MENU);
+               UIManager.Singleton.ShowGameDialog("Connection fail", "Failed to connect to server");
+           });
 
+    }
+
+    public void OnAccCreateResponse(PacketReader packet)
+    {
+        ACCOUNT_CREATE_RESP resp = (ACCOUNT_CREATE_RESP) packet.ReadByte();
+
+        if (resp == ACCOUNT_CREATE_RESP.SUCCESS)
+            UIManager.Singleton.SetState(UIState.MAIN_MENU);
+
+        switch (resp)
+        {
+            case ACCOUNT_CREATE_RESP.SUCCESS:
+                UIManager.Singleton.ShowGameDialog("Account Created", "Account created. You may login with your credentials.");
+                break;
+
+            case ACCOUNT_CREATE_RESP.SERVER_ERROR:
+                UIManager.Singleton.ShowGameDialog("Account Failed", "Server error");
+                break;
+
+            case ACCOUNT_CREATE_RESP.USER_TAKEN:
+                UIManager.Singleton.ShowGameDialog("Account Failed", "This username is taken. Try another one");
+                break;
+
+            case ACCOUNT_CREATE_RESP.USER_INVALID:
+                UIManager.Singleton.ShowGameDialog("Account Failed", "Username is invalid.");
+                break;
+
+            case ACCOUNT_CREATE_RESP.PASS_INVALID:
+                UIManager.Singleton.ShowGameDialog("Account Failed", "Password is invalid.");
+                break;
+
+            case ACCOUNT_CREATE_RESP.REALNAME_INVALID:
+                UIManager.Singleton.ShowGameDialog("Account Failed", "Real name is invalid.");
+                break;
+
+            case ACCOUNT_CREATE_RESP.LOCATION_INVALID:
+                UIManager.Singleton.ShowGameDialog("Account Failed", "Location is invalid.");
+                break;
+
+            case ACCOUNT_CREATE_RESP.EMAIL_INVALID:
+                UIManager.Singleton.ShowGameDialog("Account Failed", "Email is invalid.");
+                break;
+        }
     }
 
     public void OnCancelClick()

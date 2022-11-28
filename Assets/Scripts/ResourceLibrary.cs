@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.U2D;
 
 public class ResourceLibrary : MonoBehaviour
 {
@@ -15,7 +16,8 @@ public class ResourceLibrary : MonoBehaviour
     public const int HAIR_SPRITES_NUM = 4;
     public const int HAIR_COLOURS_NUM = 10;
 
-
+    public SpriteAtlas maleArmorAtlas;
+    public SpriteAtlas femaleArmorAtlas;
     [HideInInspector]
     public Tile[] groundLayerTiles;
     [HideInInspector]
@@ -28,7 +30,7 @@ public class ResourceLibrary : MonoBehaviour
     [HideInInspector]
     public Sprite[] itemDropSprites;
     */
-   
+    //private Sprite[] _test;
     private Sprite[] itemSprites;
     private Sprite[][] bootsSprites_male;
     private Sprite[][] bootsSprites_female;
@@ -59,8 +61,10 @@ public class ResourceLibrary : MonoBehaviour
     public uint[] goldGfxIds;
     public uint[] goldThreshold; 
 
-    public AudioClip[] music;
-    public AudioClip[] sfx;
+    public Sound[] music;
+    public Sound[] guitar;
+    public Sound[] harp;
+    public Sound[] sfx;
 
     
     void Awake()
@@ -84,11 +88,18 @@ public class ResourceLibrary : MonoBehaviour
         //Array.Sort(bootsSprites, CompareSprites);
         Array.Sort(npcSprites, CompareSprites);
 
+        /*_test = new Sprite[armor_atlas.spriteCount];
+        armor_atlas.GetSprites(_test);*/
         LoadWeaponSprites();
-        LoadArmorSprites();
+        //LoadArmorSprites();
         LoadBootSprites();
         LoadItemSprites();
-        
+
+        LoadSounds(music);
+        LoadSounds(guitar);
+        LoadSounds(harp);
+        LoadSounds(sfx);
+
         /*
         itemDropSprites = new Sprite[(int) Mathf.Ceil( ((float) allItemSprites.Length) / 2f)];
         itemSprites = new Sprite[allItemSprites.Length / 2];
@@ -110,6 +121,16 @@ public class ResourceLibrary : MonoBehaviour
         }
         */
     }
+
+/*    public Sprite GetTestByName(string name)
+    {
+        return armor_atlas.GetSprite(name);
+    }
+
+    public Sprite GetTestSprite(int index)
+    {
+        return _test[index];
+    }*/
 
     public void LoadWeaponSprites()
     {
@@ -378,6 +399,18 @@ public class ResourceLibrary : MonoBehaviour
         }
     }
 
+    public void LoadSounds(Sound[] sounds)
+    {
+        foreach (Sound s in sounds)
+        {
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.clip = s.clip;
+            s.source.loop = s.loop;
+
+            //s.source.outputAudioMixerGroup = mixerGroup;
+        }
+    }
+
     public void LoadItemSprites()
     {
         var sprites = Resources.LoadAll<Sprite>("Sprites/gfx023");
@@ -413,7 +446,7 @@ public class ResourceLibrary : MonoBehaviour
         Debug.Log($"Loaded {len} item sprites");
     }
 
-    public Sprite[] GetCharSprites(ushort gender, ushort race)
+    public Sprite[] GetCharSprites(byte gender, byte race)
     {
         int startIndex = 4 * race + 2 * gender;
 
@@ -496,7 +529,7 @@ public class ResourceLibrary : MonoBehaviour
     */
 
     //TODO: Implement gender swapping armors
-    public Sprite[] GetArmorSprites(byte gender, uint gfxId)
+    /*public Sprite[] GetArmorSprites(byte gender, uint gfxId)
     {
         switch(gender)
         {
@@ -513,7 +546,25 @@ public class ResourceLibrary : MonoBehaviour
         }
       
         return null;
+    }*/
+    //TODO: Implement all genders
+
+    public Sprite[] GetArmorSprites(byte gender, uint gfxId)
+    {
+        SpriteAtlas spriteAtlas = (gender == 0) ? femaleArmorAtlas : maleArmorAtlas;
+
+        Sprite[] arr = new Sprite[ARMOR_SPRITES_NUM];
+
+        uint startingIndex = (gfxId - 1) * 50 + 101;
+
+        for(int i = 0; i < ARMOR_SPRITES_NUM; i++)
+        {
+            arr[i] = spriteAtlas.GetSprite((startingIndex + i).ToString());
+        }
+
+        return arr;
     }
+
     /*
     public Sprite[] GetBootSprites(uint gfxId)
     {
@@ -650,7 +701,7 @@ public class ResourceLibrary : MonoBehaviour
 
     public Sprite[] GetItemBodySprites(byte gender, uint itemId)
     {
-        ItemDataEntry entry = DataFiles.Singleton.GetItemData((int)itemId);
+        ItemDataEntry entry = DataFiles.Singleton.GetItemData(itemId);
         ItemType type = (ItemType)entry.itemType;
 
         switch(type)

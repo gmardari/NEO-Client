@@ -61,8 +61,11 @@
     <Compile Include="Assets\Scripts\Entity\CharDefs.cs" />
     <Compile Include="Assets\Scripts\CamScript.cs" />
     <Compile Include="Assets\Scripts\UI\GameUI.cs" />
+    <Compile Include="Assets\Scripts\UI\UIStats.cs" />
+    <Compile Include="Assets\Scripts\Audio\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Inventory\PaperdollManager.cs" />
-    <Compile Include="Assets\Scripts\Entity\ItemEntity.cs" />
+    <Compile Include="Assets\Scripts\Packet\Handlers\PacketGreetHandler.cs" />
+    <Compile Include="Assets\Scripts\Map\Item.cs" />
     <Compile Include="Assets\Scripts\Inventory\InvManager.cs" />
     <Compile Include="Assets\Scripts\Defs.cs" />
     <Compile Include="Assets\Scripts\UI\CharacterSelect.cs" />
@@ -70,24 +73,29 @@
     <Compile Include="Assets\Scripts\Files\DataFiles.cs" />
     <Compile Include="Assets\Scripts\Map\MapDefs.cs" />
     <Compile Include="Assets\Scripts\Entity\EntityDef.cs" />
+    <Compile Include="Assets\Scripts\Audio\Sound.cs" />
+    <Compile Include="Assets\Scripts\Packet\PacketReaderExtensions.cs" />
     <Compile Include="Assets\Scripts\Entity\NpcDefs.cs" />
     <Compile Include="Assets\Scripts\UI\UIManager.cs" />
     <Compile Include="Assets\Scripts\EditorMapperScript.cs" />
     <Compile Include="Assets\Scripts\Files\DataDefs.cs" />
-    <Compile Include="Assets\test.cs" />
     <Compile Include="Assets\Scripts\Inventory\PaperdollDefs.cs" />
     <Compile Include="Assets\Scripts\Packet\Packet.cs" />
     <Compile Include="Assets\Scripts\Packet\PacketManager.cs" />
+    <Compile Include="Assets\Scripts\Packet\Handlers\PacketItemHandler.cs" />
     <Compile Include="Assets\Scripts\Packet\PacketReader.cs" />
     <Compile Include="Assets\Scripts\EOManager.cs" />
+    <Compile Include="Assets\Scripts\Packet\Handlers\PacketAccountHandler.cs" />
     <Compile Include="Assets\Scripts\Inventory\InvDefs.cs" />
     <Compile Include="Assets\Scripts\Entity\EONpc.cs" />
     <Compile Include="Assets\Scripts\Entity\NpcAnimator.cs" />
     <Compile Include="Assets\Scripts\Inventory\EntryListener.cs" />
     <Compile Include="Assets\Scripts\Entity\EOCharacter.cs" />
     <Compile Include="Assets\Scripts\Map\Cell.cs" />
+    <Compile Include="Assets\Scripts\Packet\Handlers\PacketOtherHandler.cs" />
     <Compile Include="Assets\Scripts\UI\HeadbarInstance.cs" />
     <Compile Include="Assets\Scripts\Shop\ShopDefs.cs" />
+    <Compile Include="Assets\Scripts\Packet\Handlers\PacketPlayerHandler.cs" />
     <Compile Include="Assets\Scripts\Inventory\ChestInvManager.cs" />
     <Compile Include="Assets\Scripts\UI\TabInputField.cs" />
     <Compile Include="Assets\Scripts\Inventory\InvListener.cs" />
@@ -98,7 +106,9 @@
     <Compile Include="Assets\Scripts\Files\MapLoader.cs" />
     <Compile Include="Assets\Scripts\MapCursor.cs" />
     <Compile Include="Assets\Scripts\Map\EOMap.cs" />
-    <Compile Include="Assets\Scripts\Packet\PacketHandler.cs" />
+    <Compile Include="Assets\Scripts\Packet\Handlers\PacketEntityHandler.cs" />
+    <Compile Include="Assets\Scripts\Packet\Handlers\PacketHandler.cs" />
+    <Compile Include="Assets\Scripts\Packet\Handlers\PacketMapHandler.cs" />
     <Compile Include="Assets\Scripts\ResourceLibrary.cs" />
     <Compile Include="Assets\Scripts\utils.cs" />
   </ItemGroup>
@@ -391,6 +401,9 @@
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@3.0.2\Runtime\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>Library\PackageCache\com.unity.ext.nunit@2.0.3\net40\unity-custom\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.6f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>
@@ -794,20 +807,20 @@
     <Reference Include="Unity.2D.Sprite.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.Psdimporter.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.2D.Path.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Path.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.2D.Psdimporter.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll</HintPath>
+    <Reference Include="Unity.InternalAPIEditorBridge.001">
+      <HintPath>Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PlasticSCM.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.InternalAPIEditorBridge.001">
-      <HintPath>Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>

@@ -129,7 +129,7 @@ public class ChestInvManager : MonoBehaviour
 
         if(shop.numBuyItems > 0)
         {
-            for(int i = 0; i < shop.numBuyItems; i++)
+            for(uint i = 0; i < shop.numBuyItems; i++)
             {
                 ShopBuyItem item = shop.buyItems[i];
                 var data = DataFiles.Singleton.GetItemData(i);
@@ -156,7 +156,7 @@ public class ChestInvManager : MonoBehaviour
 
         if (shop.numSellItems > 0)
         {
-            for (int i = 0; i < shop.numSellItems; i++)
+            for (uint i = 0; i < shop.numSellItems; i++)
             {
                 ShopSellItem item = shop.sellItems[i];
                 var data = DataFiles.Singleton.GetItemData(i);
@@ -182,7 +182,7 @@ public class ChestInvManager : MonoBehaviour
 
         if (shop.numCraftItems > 0)
         {
-            for (int i = 0; i < shop.numCraftItems; i++)
+            for (uint i = 0; i < shop.numCraftItems; i++)
             {
                 ShopCraftItem item = shop.craftItems[i];
                 var data = DataFiles.Singleton.GetItemData(i);

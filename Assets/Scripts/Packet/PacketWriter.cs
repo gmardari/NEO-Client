@@ -14,6 +14,15 @@ public class PacketWriter
     {
         buffer = new byte[BufferSize];
         offset = 0;
+        ApplyLengthPadding();
+    }
+
+    public PacketWriter(PacketType packetType)
+    {
+        buffer = new byte[BufferSize];
+        offset = 0;
+        ApplyLengthPadding();
+        WritePacketType(packetType);
     }
 
     public bool CanWrite(int size)
@@ -35,76 +44,101 @@ public class PacketWriter
     }
 
     //Used when Length padding applied
-    //The first integer for packet length is ignored, hence offset - 4
     public void WritePacketLength()
     {
-        uint packetLength = (uint) (offset - 4);
+        uint packetLength = (uint)(offset - 4);
         Array.Copy(BitConverter.GetBytes(packetLength), 0, buffer, 0, 4);
     }
 
-    public void WriteByte(byte a)
+    public PacketWriter WritePacketType(PacketType type)
+    {
+        WriteInt32((int)type);
+
+        return this;
+    }
+
+    public void Send()
+    {
+        EOManager.Singleton.SendPacketNew(this);
+    }
+
+    public PacketWriter WriteByte(byte a)
     {
         if (CanWrite(1))
         {
             buffer[offset++] = a;
         }
+
+        return this;
     }
 
-    public void WriteInt16(short a)
+    public PacketWriter WriteInt16(short a)
     {
         if (CanWrite(2))
         {
             Array.Copy(BitConverter.GetBytes(a), 0, buffer, offset, 2);
             offset += 2;
         }
+
+        return this;
     }
 
-    public void WriteInt32(int a)
+    public PacketWriter WriteInt32(int a)
     {
         if (CanWrite(4))
         {
             Array.Copy(BitConverter.GetBytes(a), 0, buffer, offset, 4);
             offset += 4;
         }
+
+        return this;
     }
 
-    public void WriteInt64(long a)
+    public PacketWriter WriteInt64(long a)
     {
         if (CanWrite(8))
         {
             Array.Copy(BitConverter.GetBytes(a), 0, buffer, offset, 8);
             offset += 8;
         }
+
+        return this;
     }
 
-    public void WriteUInt16(ushort a)
+    public PacketWriter WriteUInt16(ushort a)
     {
         if (CanWrite(2))
         {
             Array.Copy(BitConverter.GetBytes(a), 0, buffer, offset, 2);
             offset += 2;
         }
+
+        return this;
     }
 
-    public void WriteUInt32(uint a)
+    public PacketWriter WriteUInt32(uint a)
     {
         if (CanWrite(4))
         {
             Array.Copy(BitConverter.GetBytes(a), 0, buffer, offset, 4);
             offset += 4;
         }
+
+        return this;
     }
 
-    public void WriteUInt64(ulong a)
+    public PacketWriter WriteUInt64(ulong a)
     {
         if (CanWrite(8))
         {
             Array.Copy(BitConverter.GetBytes(a), 0, buffer, offset, 8);
             offset += 8;
         }
+
+        return this;
     }
 
-    public void WriteString(string s)
+    public PacketWriter WriteString(string s)
     {
         byte[] stringData = Encoding.ASCII.GetBytes(s);
         int len = 4 + s.Length;
@@ -115,15 +149,18 @@ public class PacketWriter
             Array.Copy(stringData, 0, buffer, offset + 4, stringData.Length);
             offset += len;
         }
+
+        return this;
     }
 
-    public void WriteBoolean(bool b)
+    public PacketWriter WriteBoolean(bool b)
     {
-        if(CanWrite(1))
+        if (CanWrite(1))
         {
             buffer[offset++] = BitConverter.GetBytes(b)[0];
         }
-       
+
+        return this;
     }
 
     //Serialize the packet fields through a binary serializer

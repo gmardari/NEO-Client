@@ -4,23 +4,30 @@ using UnityEngine;
 using EO;
 public class Cell 
 {
+    public Vector2Int Pos { get; private set; }
+
     //-1 is nothing (black)
     public int groundLayerId;
     public int specialLayerId;
     public LinkedList<IEntity> entities;
+    private List<Item> items;
 
-    public Cell()
+    public Cell(Vector2Int pos)
     {
+        this.Pos = pos;
         groundLayerId = -1;
         specialLayerId = -1;
         this.entities = new LinkedList<IEntity>();
+        this.items = new List<Item>();
     }
 
-    public Cell(int groundLayerId, int specialLayerId)
+    public Cell(Vector2Int pos, int groundLayerId, int specialLayerId)
     {
+        this.Pos = pos;
         this.groundLayerId = groundLayerId;
         this.specialLayerId = specialLayerId;
         this.entities = new LinkedList<IEntity>();
+        this.items = new List<Item>();
     }
 
     public bool IsWall()
@@ -70,13 +77,23 @@ public class Cell
         return null;
     }
 
-    public ItemEntity PopItem()
+    public Item AddItem(Item item)
     {
-        foreach(ItemEntity item in entities)
-        {
-            return item;
-        }
+        items.Add(item);
 
-        return null;
+        return item;
+    }
+
+    public void RemoveItem(Item item)
+    {
+        items.Remove(item);
+    }
+
+    public Item PopItem()
+    {
+        if (items.Count == 0)
+            return null;
+
+        return items[items.Count - 1];
     }
 }

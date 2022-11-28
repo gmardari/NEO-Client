@@ -6,25 +6,29 @@ using EO.Inventory;
 
 public class PacketReader
 {
-    public int packetType;
-    public int packetLength;
+    public PacketType packetType;
+    //public int packetLength;
     public Packet packet;
+    public int PacketLength => (buffer != null) ? buffer.Length : -1;
     public bool constructed;
     public PacketError error;
 
-    public int messageSize;
-    
     private byte[] buffer;
     private int readOffset;
 
-    public PacketReader(byte[] buffer)
+
+    public PacketReader(byte[] _buffer, int packetLength)
     {
-        this.buffer = buffer;
-        packetType = -1;
-        packetLength = -1;
-        messageSize = 4;
+        //Copy the data
+        buffer = new byte[packetLength];
+        Buffer.BlockCopy(_buffer, 4, buffer, 0, packetLength);
+
+        packetType = PacketType.NONE;
+        //packetLength = -1;
+        readOffset = 0;
         error = PacketError.NONE;
     }
+
 
     public byte ReadByte()
     {
@@ -81,7 +85,7 @@ public class PacketReader
 
     public string ReadString()
     {
-        if ((messageSize - readOffset) >= 4)
+        if ((PacketLength - readOffset) >= 4)
         {
             int stringLen = ReadInt32();
             try
@@ -92,7 +96,7 @@ public class PacketReader
             }
             catch(Exception e)
             {
-                Debug.LogError(e.StackTrace);
+                Debug.LogError(e);
                 return null;
             }
         }
@@ -102,7 +106,7 @@ public class PacketReader
 
     public bool ReadBoolean()
     {
-        if ((messageSize - readOffset) >= 1)
+        if ((PacketLength - readOffset) >= 1)
         {
             return BitConverter.ToBoolean(buffer, readOffset++);
         }
@@ -110,17 +114,45 @@ public class PacketReader
         return false;
     }
 
-    public void ReadPacketLength()
+    public static int ReadPacketLength(byte[] buffer, int readOffset)
     {
-        packetLength = ReadInt32();
-        messageSize += packetLength;
+        int len = BitConverter.ToInt32(buffer, readOffset);
+        return len;
+        //messageSize += packetLength;
     }
 
+    public PacketType ReadPacketType()
+    {
+        if ((PacketLength - readOffset) < 4)
+        {
+            error = PacketError.NO_PACKET_TYPE;
+            return PacketType.NONE;
+        }
+        else
+        {
+            int a = ReadInt32();
+            //Debug.Log($"Packet type: {a}");
+
+            //Attempt to cast it to a packet type. This also verifies it's a valid packet type.
+            try
+            {
+                PacketType type = (PacketType) a;
+                packetType = type;
+                return type;
+            }
+            catch(InvalidCastException)
+            {
+                error = PacketError.INVALID_PACKET_TYPE;
+                return PacketType.NONE;
+            }
+        }
+    }
+    /*
     //size of buffer doesnt start from offset
     public bool ReadPacket()
     {
         //Read an integer for packet type
-        if ((messageSize - readOffset) < 4)
+        if ((PacketLength - readOffset) < 4)
         {
             error = PacketError.NO_PACKET_TYPE;
             return false;
@@ -394,7 +426,7 @@ public class PacketReader
 
     public bool ReadJSONPacket()
     {
-        if ((messageSize - readOffset) < 4)
+        if ((PacketLength - readOffset) < 4)
         {
             error = PacketError.NO_PACKET_TYPE;
             return false;
@@ -534,4 +566,5 @@ public class PacketReader
         return true;
 
     }
+    */
 }

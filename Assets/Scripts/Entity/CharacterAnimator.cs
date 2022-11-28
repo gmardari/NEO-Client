@@ -13,8 +13,8 @@ public enum CharacterAnimatorState
 
 public class CharacterAnimator : MonoBehaviour
 {
-    private Vector3 hair_off_male = new Vector3(-0.016f, 0.266f, 1.5f);
-    private Vector3 hair_off_female = new Vector3(-0.016f, 0.250f, 1.5f);
+    private Vector3 hair_off_male = new Vector3(-0.01f, 0.17f, 1.5f);
+    private Vector3 hair_off_female = new Vector3(-0.01f, 0.17f, 1.5f);
     private Vector3 hair_off_walk_fem = new Vector3(-0.016f, 0.2799f, 1.5f);
     private Vector3 hair_off_walk1_male = new Vector3(0, 0.296f, 1.5f);
     private Vector3 hair_off_walk2_male = new Vector3(-0.016f, 0.296f, 1.5f);
@@ -24,12 +24,14 @@ public class CharacterAnimator : MonoBehaviour
     private Vector3 hair_off_mel_atk2_female = new Vector3(-0.062f, 0.234f, 1.5f);
 
 
-    private Vector3 armor_off = new Vector3(0f, -0.098f, 0f);
+    private Vector3 armor_off = new Vector3(0f, -0.06f, 0f);
     private Vector3 armor_off_atk = new Vector3(0.032f, -0.098f, 0f);
-    private Vector3 boot_off = new Vector3(0f, -0.078f, 0.01f);
+
+    private Vector3 boot_off = new Vector3(0f, -0.05f, 0f);
     private Vector3 boot_off_walk1 = new Vector3(0.016f, -0.0308f, 0.01f);
     private Vector3 boot_off_walk2 = new Vector3(0f, -0.0308f, 0.01f); 
     private Vector3 boot_off_melee1 = new Vector3(0.032f, -0.078f, 0.01f);
+
     private Vector3 weapon_off = new Vector3(-0.192f, -0.088f, -0.5f);
     private Vector3 weapon_off_walk = new Vector3(-0.168f, -0.022f, -0.5f);
     private Vector3 weapon_off_melee = new Vector3(-0.076f, -0.174f, -0.7f);
@@ -112,7 +114,7 @@ public class CharacterAnimator : MonoBehaviour
 
         if (def.doll.armor > 0)
         {
-            ItemDataEntry entry = DataFiles.Singleton.GetItemData((int)def.doll.armor - 1);
+            ItemDataEntry entry = DataFiles.Singleton.GetItemData(def.doll.armor - 1);
             armorSprites = ResourceLibrary.Singleton.GetArmorSprites(def.gender, entry.bodyGfx);
         }
         else
@@ -120,7 +122,7 @@ public class CharacterAnimator : MonoBehaviour
 
         if (def.doll.boots > 0)
         {
-            ItemDataEntry entry = DataFiles.Singleton.GetItemData((int)def.doll.boots - 1);
+            ItemDataEntry entry = DataFiles.Singleton.GetItemData(def.doll.boots - 1);
             bootsSprites = ResourceLibrary.Singleton.GetBootSprites(def.gender, entry.bodyGfx);
         }
         else
@@ -128,7 +130,7 @@ public class CharacterAnimator : MonoBehaviour
 
         if (def.doll.weapon > 0)
         {
-            ItemDataEntry entry = DataFiles.Singleton.GetItemData((int)def.doll.weapon - 1);
+            ItemDataEntry entry = DataFiles.Singleton.GetItemData(def.doll.weapon - 1);
             weaponSprites = ResourceLibrary.Singleton.GetWeaponSprites(def.gender, entry.bodyGfx);
 
         }

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class CharacterPreview : MonoBehaviour
 {
-    private CharacterDef def;
+    private CS_CharacterDef? _def;
 
     public Image bodyImg;
     public Image hairImg;
@@ -18,10 +18,10 @@ public class CharacterPreview : MonoBehaviour
     {
         ReloadSprites();
     }
-
-    public void SetCharacterDef(CharacterDef def)
+    
+    public void SetCharacterDef(CS_CharacterDef? _def)
     {
-        this.def = def;
+        this._def = _def;
         ReloadSprites();
     }
 
@@ -32,13 +32,13 @@ public class CharacterPreview : MonoBehaviour
 
     public void ReloadSprites()
     {
-        if(def == null)
+        if(_def == null)
         {
             SetImagesVisible(false);
             return;
         }
 
-       
+        var def = _def.Value;
 
         Sprite bodySprite = ResourceLibrary.Singleton.GetCharSprites(def.gender, def.race)[0];
         Sprite hairSprite = ResourceLibrary.Singleton.GetCharHairSprites(def.gender, def.hairStyle, def.hairColour)[1]; 
@@ -46,16 +46,16 @@ public class CharacterPreview : MonoBehaviour
         Sprite bootSprite = null;
         Sprite weaponSprite = null; 
 
-        if (def.doll.armor > 0)    
-            armorSprite = ResourceLibrary.Singleton.GetItemBodySprites(def.gender, def.doll.armor - 1)[0];
+        if (def.armor > 0)    
+            armorSprite = ResourceLibrary.Singleton.GetItemBodySprites(def.gender, def.armor - 1)[0];
         
 
-        if (def.doll.boots > 0)
-            bootSprite = ResourceLibrary.Singleton.GetItemBodySprites(def.gender, def.doll.boots - 1)[0];
+        if (def.boots > 0)
+            bootSprite = ResourceLibrary.Singleton.GetItemBodySprites(def.gender, def.boots - 1)[0];
 
 
-        if (def.doll.weapon > 0)
-            weaponSprite = ResourceLibrary.Singleton.GetItemBodySprites(def.gender, def.doll.weapon - 1)[0];
+        if (def.weapon > 0)
+            weaponSprite = ResourceLibrary.Singleton.GetItemBodySprites(def.gender, def.weapon - 1)[0];
 
         bodyImg.sprite = bodySprite;
         hairImg.sprite = hairSprite;
@@ -93,4 +93,5 @@ public class CharacterPreview : MonoBehaviour
     {
         
     }
+    
 }

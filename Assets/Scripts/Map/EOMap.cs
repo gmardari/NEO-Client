@@ -14,6 +14,8 @@ namespace EO.Map
         public GameObject itemPrefab;
         public GameObject chestPrefab;
         public GameObject entitiesContainer;
+        public GameObject itemsContainer;
+
         private GameObject render_mapObj;
         private Grid grid;
         private Tilemap[] layers;
@@ -88,12 +90,14 @@ namespace EO.Map
             if (isLoaded)
                 UnloadMap();
 
+            SetupMap();
+
             if(EOManager.player != null)
             {
                 EOManager.EO_Character.NetSetMap(mapId);
             }
 
-            isLoadingProcess = true; //Start loading entities and characters
+            //isLoadingProcess = true; //Start loading entities and characters
             //readyToLoad = true;
 
 
@@ -126,7 +130,7 @@ namespace EO.Map
         }
 
 
-        private void SetupMap()
+        private bool SetupMap()
         {
             MapContainer container = mapLoader.ReadMapFromFile("map" + mapId.ToString("D3"), false);
 
@@ -135,6 +139,12 @@ namespace EO.Map
                 if(LoadMap(container, true))
                 {
                     Debug.Log($"Loaded map {mapName}, id:{mapId}");
+
+                    //This Monobehaviour would be disabled if failed to previously load map
+                    if (!this.enabled)
+                        this.enabled = true;
+
+                    return true;
                 }
                 else
                 {
@@ -147,6 +157,8 @@ namespace EO.Map
                 Debug.LogWarning($"Error loading map id:{mapId}");
                 this.enabled = false;
             }
+
+            return false;
         }
 
         public bool LoadMap(MapContainer container, bool draw)
@@ -184,7 +196,7 @@ namespace EO.Map
             }
             catch (Exception e)
             {
-                Debug.LogWarning(e.ToString());
+                Debug.LogWarning(e);
                 readyToLoad = false;
                 loadingError = true;
                 isLoadingProcess = false;
@@ -218,18 +230,21 @@ namespace EO.Map
             {
                 for (int y = mapBounds.yMin; y < mapBounds.yMax; y++)
                 {
+                    Vector2Int pos = new Vector2Int(x, y);
                     int groundTileId = container.groundLayer[i];
                     int objTileId = container.objectsLayer[i];
                     int overlayTileId = container.overlayLayer[i];
                     int wallsDownTileId = container.wallsDownLayer[i];
                     int wallsRightTileId = container.wallsRightLayer[i];
+                    int specTilespec = container.specialLayer.tiles[i];
+                    
 
                     int xShifted = x - mapBounds.xMin;
                     int yShifted = y - mapBounds.yMin;
 
 
-                    cells[xShifted, yShifted] = new Cell();
-                    cells[xShifted, yShifted].groundLayerId = groundTileId;
+                    cells[xShifted, yShifted] = new Cell(pos, groundTileId, specTilespec);
+                    //cells[xShifted, yShifted].groundLayerId = groundTileId;
 
                     //Add walls
                     if (groundTileId >= 0)
@@ -265,7 +280,7 @@ namespace EO.Map
             
         }
 
-        private void LoadGroundLayer(in MapContainer container, bool draw)
+        /*private void LoadGroundLayer(in MapContainer container, bool draw)
         {
             int i = 0;
             for (int x = mapBounds.xMin; x < mapBounds.xMax; x++)
@@ -304,9 +319,9 @@ namespace EO.Map
             {
                 ground_layer.CompressBounds();
             }
-        }
+        }*/
 
-        private void LoadWallsLayer(in MapContainer container, bool draw)
+        /*private void LoadWallsLayer(in MapContainer container, bool draw)
         {
             int i = 0;
             for (int x = mapBounds.xMin; x < mapBounds.xMax; x++)
@@ -338,7 +353,7 @@ namespace EO.Map
                 wall_down_layer.CompressBounds();
                 wall_right_layer.CompressBounds();
             }
-        }
+        }*/
 
         private void HandlePackets()
         {
@@ -365,52 +380,27 @@ namespace EO.Map
 
                 //If the entity exists, remove and update it!
                 //TODO: Consider updating the character rather than deleting and renewing
-                if (entities.ContainsKey(cp.entityId))
-                {
-                    RemoveEntity(cp.entityId);
-                }
-
-                GameObject playerObj = Instantiate(playerPrefab, entitiesContainer.transform);
-
-                //playerObj.GetComponent<EntityDef>().Init(castedPacket.entityId, (EntityType) castedPacket.entityType, mapId, new Vector2Int(castedPacket.posX, castedPacket.posY));
-                playerObj.GetComponent<EntityDef>().Init(cp.entityId, EntityType.PLAYER, mapId, new Vector2Int(cp.x, cp.y));
-                entities[cp.entityId] = playerObj;
-
-                bool isLocalPlayer = (cp.entityId == characterId);
-                EOCharacter eo_char = playerObj.GetComponent<EOCharacter>();
-                eo_char.Init(cp.def, isLocalPlayer);
-
-                //Set Local Player
-                if (isLocalPlayer)
-                    EOManager.player = playerObj;
-
-                Debug.Log($"Set character def id {cp.entityId}");
+               // AddCharacter(cp);
 
             }
             else if (packet is SetNpcDef)
             {
                 var cp = packet as SetNpcDef;
-                
-                GameObject npcObj = Instantiate(npcPrefab, entitiesContainer.transform);
-                EntityDef def = npcObj.GetComponent<EntityDef>();
 
-                def.Init(cp.entityId, EntityType.NPC, mapId, new Vector2Int(cp.x, cp.y));
-                npcObj.GetComponent<EONpc>().Init((int)cp.npcId);
-
-                entities[cp.entityId] = npcObj;
+                //AddNpc(cp);
             }
             else if (packet is SetItemDef)
             {
                 var cp = packet as SetItemDef;
 
-                AddItemEntity(cp.entityId, cp.itemId, cp.quantity, new Vector2Int(cp.x, cp.y));
+                //AddItemEntity(cp.entityId, cp.itemId, cp.quantity, new Vector2Int(cp.x, cp.y));
             }
             else if (packet is SetPlayerInvItem)
             {
                 var cp = packet as SetPlayerInvItem;
 
                 Debug.Log($"SetPlayerInvItem item id: {cp.itemId}, pos: ({cp.x}, {cp.y} quant:{cp.quantity})");
-                InvManager.Singleton.OnSetItemDef(new Vector2Int((int) cp.x, (int) cp.y), cp.itemId, cp.quantity);
+                //InvManager.Singleton.OnSetItemDef(new Vector2Int((int) cp.x, (int) cp.y), cp.itemId, cp.quantity);
             }
             else if (packet is SetChestInvItem)
             {
@@ -421,7 +411,7 @@ namespace EO.Map
             }
             else if(packet is SetPaperdollSlot)
             {
-                var cp = packet as SetPaperdollSlot;
+               /* var cp = packet as SetPaperdollSlot;
                 var entity = entities[cp.entityId];
 
                 if(entity != null)
@@ -430,7 +420,7 @@ namespace EO.Map
 
                     if (eo_char != null)
                         eo_char.NetSetPaperdoll(cp);
-                }
+                }*/
                
             }
             else if (packet is SetEntityDir)
@@ -622,6 +612,66 @@ namespace EO.Map
             }
         }
 
+        public void AddNpc(ulong entityId, Vector2Int pos, uint direction, uint npcId, ulong health, ulong maxHealth)
+        {
+            GameObject npcObj = Instantiate(npcPrefab, entitiesContainer.transform);
+            EntityDef def = npcObj.GetComponent<EntityDef>();
+
+            def.Init(entityId, EntityType.NPC, mapId, pos);
+            npcObj.GetComponent<EONpc>().Init((int) npcId);
+
+            entities[entityId] = npcObj;
+        }
+
+        public void AddCharacter(ulong entityId, Vector2Int pos, uint direction, ulong health, ulong maxHealth, CharacterDef def)
+        {
+            if (entities.ContainsKey(entityId))
+            {
+                RemoveEntity(entityId);
+            }
+
+            GameObject playerObj = Instantiate(playerPrefab, entitiesContainer.transform);
+
+            //playerObj.GetComponent<EntityDef>().Init(castedPacket.entityId, (EntityType) castedPacket.entityType, mapId, new Vector2Int(castedPacket.posX, castedPacket.posY));
+            playerObj.GetComponent<EntityDef>().Init(entityId, EntityType.PLAYER, mapId, pos);
+            entities[entityId] = playerObj;
+
+            bool isLocalPlayer = (entityId == characterId);
+            EOCharacter eo_char = playerObj.GetComponent<EOCharacter>();
+            eo_char.Init(def, isLocalPlayer);
+
+            //Set Local Player
+            if (isLocalPlayer)
+                EOManager.player = playerObj;
+
+            Debug.Log($"Set character def id {entityId}");
+        }
+
+        public GameObject GetEntityObj(ulong entityId)
+        {
+            if(entities.TryGetValue(entityId, out GameObject obj))
+            {
+                return obj;
+            }
+
+            throw new KeyNotFoundException($"Entity id {entityId} doesn't exist.");
+        }
+
+        public EOCharacter GetCharacter(ulong entityId)
+        {
+            if (entities.TryGetValue(entityId, out GameObject obj))
+            {
+                var eo_char = obj.GetComponent<EOCharacter>();
+
+                if (eo_char == null)
+                    throw new Exception($"Entity id {entityId} isn't a character.");
+
+                return eo_char;
+            }
+            else
+                throw new KeyNotFoundException($"Character id {entityId} doesn't exist.");
+        }
+
         public void RemoveEntity(RemoveEntity packet)
         {
             RemoveEntity(packet.entityId);
@@ -671,23 +721,24 @@ namespace EO.Map
         }
 
 
-        public void AddItemEntity(ulong entityId, uint itemId, uint quantity, Vector2Int cellPos)
+        public void AddItem(uint itemId, uint quantity, byte layer, Vector2Int pos)
         {
-            Cell cell = GetCell(cellPos);
+            Cell cell = GetCell(pos);
 
             //Position gameObject in world space
-            Vector3 worldSpace = CellToWorld(cellPos);
+            Vector3 worldSpace = CellToWorld(pos);
             worldSpace.y += 0.25f; //16 pixels up, tile.height / 2
 
-            GameObject obj = Instantiate(itemPrefab, worldSpace, Quaternion.identity, entitiesContainer.transform);
+            GameObject obj = Instantiate(itemPrefab, worldSpace, Quaternion.identity, itemsContainer.transform);
+            obj.GetComponent<SpriteRenderer>().sortingOrder = 1 + layer; //Add 1 so it's on top of ground layer
             
             //Setup item object
-            ItemEntity item = new ItemEntity(entityId, itemId, quantity, obj);
-            item.GetDef().Init(entityId, EntityType.ITEM, mapId, cellPos);
+            Item item = new Item(itemId, quantity, layer, obj);
+            //item.GetDef().Init(entityId, EntityType.ITEM, mapId, cellPos);
             
             //Add to arrays
-            cell.AddEntity(item);
-            entities[entityId] = obj;
+            cell.AddItem(item);
+            //entities[entityId] = obj;
         }
 
         public Cell GetCell(Vector2Int position)
@@ -811,7 +862,7 @@ namespace EO.Map
             //Display item hints on items with the cursor on top of them
             if (cursorPos is Vector2Int cursorPosVal)
             {
-                ItemEntity item = GetCell(cursorPosVal).PopItem();
+                Item item = GetCell(cursorPosVal).PopItem();
 
                 if (item != null)
                 {
@@ -822,7 +873,7 @@ namespace EO.Map
                     int textRectY = 30;
                     Vector2 imGuiPos = utils.ScreenToIMGUISpace(screenPos.x - (textRectX / 2), screenPos.y + textRectY);
 
-                    GUI.Label(new Rect(imGuiPos.x, imGuiPos.y, textRectX, 30), item.name);
+                    GUI.Label(new Rect(imGuiPos.x, imGuiPos.y, textRectX, 30), item.Name);
                 }
             }
         }

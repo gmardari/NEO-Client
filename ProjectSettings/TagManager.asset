@@ -7,8 +7,8 @@ TagManager:
   - Map_ground
   - Map_walls_down
   - Map_walls_right
-  - ItemEntity
   - GUI
+  - Item
   layers:
   - Default
   - TransparentFX

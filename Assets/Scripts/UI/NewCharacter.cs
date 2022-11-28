@@ -23,7 +23,7 @@ public class NewCharacter : MonoBehaviour
     private byte _hairColour;
     private byte _skinColour;
 
-    CharacterDef def;
+    CS_CharacterDef def;
 
     void Awake()
     {
@@ -34,7 +34,7 @@ public class NewCharacter : MonoBehaviour
         skinColourBtn.onClick.AddListener(OnSkinColourBtnClick);
         */
 
-        def = new CharacterDef();
+        def = new CS_CharacterDef();
         charPreviewScript.SetCharacterDef(def);
     }
 
@@ -48,7 +48,8 @@ public class NewCharacter : MonoBehaviour
         genderImg.sprite = ResourceLibrary.Singleton.genderUIImages[_gender];
 
         def.gender = _gender;
-        charPreviewScript.OnCharacterDefChange();
+        //charPreviewScript.OnCharacterDefChange();
+        charPreviewScript.SetCharacterDef(def);
     }
 
     public void OnHairStyleBtnClick()
@@ -61,7 +62,8 @@ public class NewCharacter : MonoBehaviour
         hairStyleImg.sprite = ResourceLibrary.Singleton.hairStyleUIImages[_hairStyle];
 
         def.hairStyle = _hairStyle;
-        charPreviewScript.OnCharacterDefChange();
+        //charPreviewScript.OnCharacterDefChange();
+        charPreviewScript.SetCharacterDef(def);
     }
 
     public void OnHairColourBtnClick()
@@ -74,7 +76,8 @@ public class NewCharacter : MonoBehaviour
         hairColourImg.sprite = ResourceLibrary.Singleton.hairColourUIImages[_hairColour];
 
         def.hairColour = _hairColour;
-        charPreviewScript.OnCharacterDefChange();
+        //charPreviewScript.OnCharacterDefChange();
+        charPreviewScript.SetCharacterDef(def);
     }
 
     public void OnSkinColourBtnClick()
@@ -87,14 +90,15 @@ public class NewCharacter : MonoBehaviour
         skinColourImg.sprite = ResourceLibrary.Singleton.skinColourUIImages[_skinColour];
 
         def.skinColour = _skinColour;
-        charPreviewScript.OnCharacterDefChange();
-
+        //charPreviewScript.OnCharacterDefChange();
+        charPreviewScript.SetCharacterDef(def);
     }
 
     public void OnOKClick()
     {
-        EOManager.Singleton.packetManager.Register(typeof(CharacterCreateResponse), OnCharacterCreateResp, OnCharacterCreateTimeout, 3.0f);
+        //EOManager.Singleton.packetManager.Register(typeof(CharacterCreateResponse), OnCharacterCreateResp, OnCharacterCreateTimeout, 3.0f);
         EOManager.Singleton.CreateCharacter(charNameInput.text, _gender, _hairStyle, _hairColour, _skinColour);
+        EOManager.packetManager.Register(PacketType.CHARACTER_CREATE_RESPONSE, 2.0f, OnCharacterCreateResp, OnCharacterCreateTimeout);
     }
 
     public void OnCancelClick()
@@ -102,11 +106,9 @@ public class NewCharacter : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    public void OnCharacterCreateResp(Packet packet)
+    public void OnCharacterCreateResp(PacketReader packet)
     {
-        CharacterCreateResponse resp = packet as CharacterCreateResponse;
-
-        CHARACTER_CREATE_RESP response = (CHARACTER_CREATE_RESP)resp.response;
+        CHARACTER_CREATE_RESP response = (CHARACTER_CREATE_RESP) packet.ReadByte();
 
         switch (response)
         {
@@ -132,6 +134,7 @@ public class NewCharacter : MonoBehaviour
     public void OnCharacterCreateTimeout()
     {
         UIManager.Singleton.ShowGameDialog("Server Error", UIManager.serverFailRequestMsg);
+        Destroy(this.gameObject);
     }
 
     // Update is called once per frame

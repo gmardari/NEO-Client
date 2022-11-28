@@ -12,8 +12,9 @@ public class CharacterSelect : MonoBehaviour
     
     void Awake()
     {
-
+        
     }
+
 
     public void Init()
     {
@@ -29,6 +30,8 @@ public class CharacterSelect : MonoBehaviour
             SetCharButtonsVisible(i, false);
 
         }
+
+        AudioManager.Singleton.Play(4);
     }
 
     public void SetCharPanelEnabled(int index, bool enabled)
@@ -42,8 +45,6 @@ public class CharacterSelect : MonoBehaviour
             panel.Find("Name").GetComponent<Text>().text = EOManager.cs_defs[index].name;
             //Set character preview
             panel.Find("CharPrevContainer/CharacterPreview").GetComponent<CharacterPreview>().SetCharacterDef(EOManager.cs_defs[index]);
-
-            
         }
         else
         {
@@ -51,10 +52,11 @@ public class CharacterSelect : MonoBehaviour
             //Set character preview
             panel.Find("CharPrevContainer/CharacterPreview").GetComponent<CharacterPreview>().SetCharacterDef(null);
 
-            
-            login.GetComponent<Button>().onClick.RemoveAllListeners();
-            delete.GetComponent<Button>().onClick.RemoveAllListeners();
+            //login.GetComponent<Button>().onClick.RemoveAllListeners();
+            //delete.GetComponent<Button>().onClick.RemoveAllListeners();
         }
+
+        SetCharButtonsVisible(index, enabled);
     }
 
     public void SetCharButtonsVisible(int index, bool visible)
@@ -69,12 +71,18 @@ public class CharacterSelect : MonoBehaviour
 
     public void OnCharLoginClick(int b)
     {
-        UIManager.Singleton.OnCharacterLoginClick(b);
+        if(!EOManager.isEnteringWorld)
+        {
+            CS_CharacterDef def = EOManager.cs_defs[b];
+
+            Debug.Log($"Entering world with char {def.name}");
+            EOManager.Singleton.EnterWorld(b);
+        }
     }
 
     public void OnCharDeleteClick(int b)
     {
-
+        AudioManager.Singleton.Play(1);
     }
 
     public void OnCreateBtnClick()
@@ -86,23 +94,25 @@ public class CharacterSelect : MonoBehaviour
         {
             GameObject newCharUi = Instantiate(newCharPrefab, root.transform);
         }
+
+        AudioManager.Singleton.Play(1);
     }
 
-    public void OnCharacterDefAdd(CharacterDef def)
+    public void OnCharacterDefAdd(int index)
     {
-        int index = EOManager.cs_index - 1;
+        //int index = EOManager.cs_index - 1;
         SetCharPanelEnabled(index, true);
-        SetCharButtonsVisible(index, true);
+        //SetCharButtonsVisible(index, true);
     }
 
     public void OnPasswordBtnClick()
     {
-
+        AudioManager.Singleton.Play(1);
     }
 
     public void OnExit()
     {
-      
+        AudioManager.Singleton.Play(1);
     }
 
     // Update is called once per frame

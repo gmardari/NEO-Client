@@ -6,6 +6,7 @@ public class CamScript : MonoBehaviour
 {
 
     private Camera cam;
+    public float camYOffset;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +20,8 @@ public class CamScript : MonoBehaviour
         if(EOManager.player != null)
         {
             Vector3 playerPos = EOManager.player.transform.position;
-            cam.transform.position = new Vector3(playerPos.x, playerPos.y, cam.transform.position.z);
+            Vector3 camPos = cam.transform.position;
+            cam.transform.position = new Vector3(playerPos.x, playerPos.y + camYOffset, camPos.z);
         }
     }
 }

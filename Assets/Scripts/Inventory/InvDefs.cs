@@ -23,50 +23,61 @@ public enum ItemType : uint
     BRACER
 }
 
+//TODO: Add game object reference
 public interface I_UIItem
 {
     public uint ItemId { get; }
-    public ItemType Type { get; }
+    public ItemType ItemType { get; }
     public InvListener UI { get; }
 
     public void Destroy();
 }
 
-public class InventoryItem : I_UIItem
+//An item in a player inventory.
+public class PlayerItem : I_UIItem
 {
-    private uint itemId;
-    private ItemType type;
-    private InvListener ui;
-
-    private uint quantity;
     public Vector2Int position;
     public Vector2Int size;
+    private uint quantity;
 
-    public string name;
-
-    public uint ItemId { get { return itemId; } }
-    public uint Quantity { get { return quantity; } 
-        set
+    public uint ItemId { get; private set; }
+    public uint Quantity 
+    { 
+        get { return quantity; }
+        set 
         {
             quantity = value;
 
-            if (quantity == 0 && type != ItemType.GOLD)
+            if (quantity == 0 && ItemType != ItemType.GOLD)
                 Destroy();
         }
     }
-    public ItemType Type { get { return type; } }
-    public InvListener UI { get { return ui; } }
 
-    public InventoryItem(uint itemId, uint quantity, InvListener ui, Vector2Int pos, ItemDataEntry data)
+    public ItemType ItemType => (ItemType) itemData.itemType;
+    public string Name => itemData.name;
+    public InvListener UI { get; private set; }
+    public GameObject Obj => UI.gameObject;
+
+    private ItemDataEntry itemData;
+
+    public PlayerItem(uint itemId, uint quantity, GameObject obj, Vector2Int pos)
     {
-        this.itemId = itemId;
-        this.quantity = quantity;
-        this.ui = ui;
-        this.size = new Vector2Int((int)data.sizeX, (int)data.sizeY);
-        this.type = (ItemType) data.itemType;
-        InitPosition(pos);
+        this.ItemId = itemId;
+        this.Quantity = quantity;
+        this.UI = obj.GetComponent<InvListener>();
+        itemData = DataFiles.Singleton.GetItemData(itemId);
 
-        this.name = data.name;
+        this.size = new Vector2Int((int) itemData.sizeX, (int) itemData.sizeY);
+        //this.type = (ItemType) data.itemType;
+        InitPosition(pos);
+        Init();
+        //this.name = data.name;
+    }
+
+    public void Init()
+    {
+        UI.Init(this);
+        UI.SetUIPosition();
     }
 
     /*
@@ -88,7 +99,7 @@ public class InventoryItem : I_UIItem
         {
             for (int y = pos.y; y <= posEndY; y++)
             {
-                InvManager.Singleton.slots[x, y] = (int) itemId;
+                InvManager.Singleton.slots[x, y] = (int) ItemId;
             }
         }
 
@@ -119,25 +130,26 @@ public class InventoryItem : I_UIItem
         {
             for (int y = newPos.y; y <= posEndY; y++)
             {
-                InvManager.Singleton.slots[x, y] = (int) itemId;
+                InvManager.Singleton.slots[x, y] = (int) ItemId;
             }
         }
 
         position = newPos;
-        ui.SetUIPosition();
+        UI.SetUIPosition();
     }
     public void Destroy()
     {
-        if(ui != null)
+        if(UI != null)
         {
             GameObject.Destroy(UI.gameObject);
-            ui = null;
+            UI = null;
         }
+        InvManager.Singleton.OnItemDestroy(ItemId);
     }
 
-    public static bool IsEquipment(InventoryItem item)
+    public static bool IsEquipment(PlayerItem item)
     {
-        uint itemTypeInt = (uint) item.type;
+        uint itemTypeInt = (uint) item.ItemType;
 
         if (itemTypeInt >= 3 && itemTypeInt <= 14)
             return true;
@@ -154,28 +166,36 @@ public class PaperdollItem : I_UIItem
     public PaperdollSlot slot;
     private uint itemId;
     private ItemType type;
-    private InvListener ui;
+    private ItemDataEntry itemData;
     
-    public string name;
+    
 
     public uint ItemId { get { return itemId; } }
+    public string Name => itemData.name;
+    public ItemType ItemType => (ItemType)itemData.itemType;
 
-    public ItemType Type { get { return type; } }
+    public InvListener UI { get; private set; }
 
-    public InvListener UI { get { return ui; } }
-
-    public PaperdollItem(PaperdollSlot slot, uint itemId, InvListener ui, ItemDataEntry data)
+    public PaperdollItem(PaperdollSlot slot, uint itemId, GameObject obj)
     {
-        (this.slot, this.itemId, this.ui, this.name) = (slot, itemId, ui, data.name);
-        this.type = (ItemType) data.itemType;
+        (this.slot, this.itemId, this.UI) = (slot, itemId, obj.GetComponent<InvListener>());
+        itemData = DataFiles.Singleton.GetItemData(itemId);
+
+        Init();
+    }
+
+    public void Init()
+    {
+        UI.Init(this);
+        UI.SetUIPosition();
     }
 
     public void Destroy()
     {
-        if(this.ui != null)
+        if(UI != null)
         {
             GameObject.Destroy(UI.gameObject);
-            ui = null;
+            UI = null;
         }
            
     }
@@ -201,7 +221,7 @@ public class ChestItem : I_UIItem
         } }
 
     public uint SlotIndex { get { return slotIndex; } set { slotIndex = value; } }
-    public ItemType Type { get { return type; } }
+    public ItemType ItemType { get { return type; } }
     public InvListener UI { get { return ui; } }
 
     public ChestItem(uint itemId, uint quantity, uint slotIndex, InvListener ui)
@@ -211,7 +231,7 @@ public class ChestItem : I_UIItem
         this.slotIndex = slotIndex;
         this.ui = ui;
 
-        var entry = DataFiles.Singleton.GetItemData((int)itemId);
+        var entry = DataFiles.Singleton.GetItemData(itemId);
         this.type = (ItemType) entry.itemType;
         this.name = entry.name;
     }

@@ -8,7 +8,7 @@ using EO;
 public class InvManager : MonoBehaviour
 {
     public static InvManager Singleton;
-    public Dictionary<uint, InventoryItem> invItems;
+    public Dictionary<uint, PlayerItem> invItems;
     public int[,] slots;
     public I_UIItem dragItem;
 
@@ -22,7 +22,7 @@ public class InvManager : MonoBehaviour
     void Awake()
     {
         Singleton = this;
-        invItems = new Dictionary<uint, InventoryItem>();
+        invItems = new Dictionary<uint, PlayerItem>();
         slots = new int[SLOT_SIZE.x, SLOT_SIZE.y];
 
         for (int x = 0; x < SLOT_SIZE.x; x++)
@@ -38,16 +38,17 @@ public class InvManager : MonoBehaviour
     }
 
 
-    public void OnSetItemDef(Vector2Int pos, uint itemId, uint quantity)
+    public void OnSetItemDef(uint itemId, uint quantity, Vector2Int pos)
     {
         //var invContainer = UIManager.Singleton.guiRoot.transform.Find("Overlay/Inventory/Items").gameObject;
 
-        if(invItems.TryGetValue(itemId, out InventoryItem item))
+        if(invItems.TryGetValue(itemId, out PlayerItem item))
         {
-            SetItemAmount(itemId, quantity);
+            //SetItemAmount(itemId, quantity);
+            item.Quantity = quantity;
 
             //Only set the slot position if item actually still exists (exception is gold as it can be 0)
-            if(quantity > 0 || item.Type == ItemType.GOLD)
+            if(quantity > 0 || item.ItemType == ItemType.GOLD)
             {
                 item.SetSlotPosition(pos);
             }
@@ -56,16 +57,17 @@ public class InvManager : MonoBehaviour
         else
         {
             //Create UI object for inv item
-            GameObject obj = Instantiate(uiItemPrefab);
-            InvListener listener = obj.GetComponent<InvListener>();
-            ItemDataEntry data = DataFiles.Singleton.itemDataFile.entries[(int)itemId];
+            GameObject obj = Instantiate(uiItemPrefab, invContainer.transform);
+            //InvListener listener = obj.GetComponent<InvListener>();
+            //ItemDataEntry data = DataFiles.Singleton.itemDataFile.entries[(int)itemId];
 
             //Positioning automatically occurs in the constructor
-            item = new InventoryItem(itemId, quantity, listener, pos, data); 
-            obj.GetComponent<InvListener>().Init(item);
-            listener.SetUIPosition();
+            item = new PlayerItem(itemId, quantity, obj, pos); 
+            /*obj.GetComponent<InvListener>().Init(item);
+            listener.SetUIPosition();*/
 
             invItems.Add(itemId, item);
+            Debug.Log($"Added item " + item.Name + $" of quantity {quantity} at pos {pos}");
         }
     }
 
@@ -139,7 +141,7 @@ public class InvManager : MonoBehaviour
     }
 
     //Assume we have that item
-    public void SetItemAmount(uint itemId, uint quantity)
+    /*public void SetItemAmount(uint itemId, uint quantity)
     {
         var item = invItems[itemId];
 
@@ -149,7 +151,7 @@ public class InvManager : MonoBehaviour
         if (quantity == 0 && item.Type != ItemType.GOLD)
             invItems.Remove(itemId);
             
-    }
+    }*/
 
     public Vector2Int? GetFreeSpace(int itemId)
     {
@@ -169,22 +171,34 @@ public class InvManager : MonoBehaviour
         return null;
     }
 
-    public void RequestMove(InventoryItem item, Vector2Int pos)
+    public void OnItemDestroy(uint itemId)
+    {
+        invItems.Remove(itemId);
+    }
+
+    public void RequestMove(PlayerItem item, Vector2Int pos)
     {
         RequestItemMove packet = new RequestItemMove(item.ItemId, (uint)pos.x, (uint)pos.y);
         EOManager.Singleton.SendPacket(packet);
     }
 
-    public void RequestEquip(InventoryItem item, byte slotIndex)
+    public void RequestEquip(PlayerItem item, byte slotIndex)
     {
-        RequestItemEquip p = new RequestItemEquip(item.ItemId, slotIndex, true);
-        EOManager.Singleton.SendPacket(p);
+        /* RequestItemEquip p = new RequestItemEquip(item.ItemId, slotIndex, true);
+         EOManager.Singleton.SendPacket(p);*/
+        PacketWriter writer = new PacketWriter(PacketType.REQUEST_ITEM_EQUIP);
+        writer.WriteUInt32(item.ItemId)
+            .WriteByte(slotIndex)
+            .Send();
     }
 
     public void RequestUnequip(PaperdollItem item, byte slotIndex)
     {
-        RequestItemEquip p = new RequestItemEquip(item.ItemId, slotIndex, false);
-        EOManager.Singleton.SendPacket(p);
+        /*RequestItemEquip p = new RequestItemEquip(item.ItemId, slotIndex, false);
+        EOManager.Singleton.SendPacket(p);*/
+        PacketWriter writer = new PacketWriter(PacketType.REQUEST_ITEM_UNEQUIP);
+        writer.WriteByte(slotIndex)
+            .Send();
     }
 
     public void OnItemDrag(I_UIItem newDragItem)
@@ -207,7 +221,7 @@ public class InvManager : MonoBehaviour
             if (delta.x >= 0 && delta.y >= 0 && delta.x <= r.rect.size.x && delta.y <= r.rect.size.y)
             {
                 Vector2Int pos = new Vector2Int(((int) delta.x) / 25, ((int) delta.y) / 25);
-                if(dragItem is InventoryItem dragInvItem)
+                if(dragItem is PlayerItem dragInvItem)
                 {
                     if (pos != dragInvItem.position && IsInBounds(pos, dragInvItem.size))
                     {
@@ -245,15 +259,15 @@ public class InvManager : MonoBehaviour
     public void OnItemDoubleClick(I_UIItem item)
     {
         
-        if(item is InventoryItem invItem)
+        if(item is PlayerItem invItem)
         {
             if (!ChestInvManager.Singleton.chest_opened)
             {
-                if (InventoryItem.IsEquipment(invItem))
+                if (PlayerItem.IsEquipment(invItem))
                 {
                     //Equip
                     //RequestEquip(invItem);
-                    int itemTypeId = ((int)invItem.Type);
+                    int itemTypeId = ((int)invItem.ItemType);
 
                     //All item types between HAT and BOOTS have the same ID as the slotIndex
                     if (itemTypeId >= (int)ItemType.HAT && itemTypeId <= (int)ItemType.BOOTS)
@@ -264,7 +278,7 @@ public class InvManager : MonoBehaviour
                     else
                     {
                         //TODO: Finish
-                        switch (invItem.Type)
+                        switch (invItem.ItemType)
                         {
                             case ItemType.RING:
 

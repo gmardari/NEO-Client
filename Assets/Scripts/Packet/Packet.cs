@@ -7,20 +7,27 @@ public enum PacketError
     INVALID_PACKET_TYPE,
     INVALID_DATA
 }
-
 public enum PacketType : int
 {
     NONE,
+
     HELLO_PACKET,
     LOGIN_AUTH,
     LOGIN_RESPONSE,
+
     ACCOUNT_CREATE,
     ACCOUNT_CREATE_RESPONSE,
     CHARACTER_CREATE,
     CHARACTER_CREATE_RESPONSE,
-    REQUEST_ENTER_WORLD,
-    ENTER_WORLD_RESPONSE,
+    SET_CHARACTER_SLOT,
+
     SET_MAP,
+
+    SET_CHARACTER_DEF,
+    SET_PAPERDOLL_SLOT,
+    REQUEST_PLAYER_DIR,
+    REQUEST_PLAYER_ATTACK,
+
     SET_ENTITY_DEF,
     SET_ENTITY_POS,
     SET_ENTITY_DIR,
@@ -28,29 +35,44 @@ public enum PacketType : int
     SET_ENTITY_ATTACK,
     SET_ENTITY_PROP,
     SET_ENTITY_HEALTH,
-    REQUEST_PLAYER_DIR,
-    REQUEST_PLAYER_ATTACK,
+    SET_NPC_DEF,
+    REQUEST_ENTITY_INTERACT,
+    REMOVE_ENTITY,
+
+    SET_ITEM_DEF,
+    SET_PLAYER_INV_ITEM,
     REQUEST_ITEM_PICKUP,
     REQUEST_ITEM_DROP,
     REQUEST_ITEM_MOVE,
     REQUEST_ITEM_EQUIP,
+    REQUEST_ITEM_UNEQUIP,
     REQUEST_ITEM_CONSUME,
-    REQUEST_ENTITY_INTERACT,
+
+    SET_CHEST_INV_ITEM,
     REQUEST_CHEST_CLOSE,
     REQUEST_CHEST_TAKE,
     REQUEST_CHEST_GIVE,
-    REMOVE_ENTITY,
+    CHEST_OPEN,
+
+    REQUEST_ENTER_WORLD,
+    ENTER_WORLD_RESPONSE,
     ACK,
     SET_NET_TIME,
     REQUEST_RES,
-    SET_CHARACTER_DEF,
-    SET_NPC_DEF,
-    SET_ITEM_DEF,
-    SET_PLAYER_INV_ITEM,
-    SET_CHEST_INV_ITEM,
-    SET_PAPERDOLL_SLOT,
-    INIT_PLAYER_VALS,
-    CHEST_OPEN
+    INIT_PLAYER_VALS
+}
+
+public enum PacketFamily
+{
+    NONE,
+    GREET,
+    ACCOUNT,
+    MAP,
+    PLAYER,
+    ENTITY,
+    ITEM,
+    CHEST,
+    OTHER
 }
 
 public enum RESOURCE_TYPE : byte
@@ -64,6 +86,20 @@ public class Packet
 {
     [JsonIgnore]
     public int packetType;
+
+    public static PacketFamily GetFamily(PacketType packetType)
+    {
+        var type = (int)packetType;
+
+        if (type == 0)
+            return PacketFamily.NONE;
+        else if (1 <= type && type <= 8)
+            return PacketFamily.ACCOUNT;
+        else if (type == 9)
+            return PacketFamily.MAP;
+
+        return PacketFamily.NONE;
+    }
 }
 
 public class HelloPacket : Packet
@@ -524,7 +560,7 @@ public class SetCharacterDef : Packet
         this.packetType = (int)PacketType.SET_CHARACTER_DEF;
         (this.entityId, this.x, this.y, this.direction, this.health, this.maxHealth) = (entityId, x, y, direction, health, maxHealth);
         this.def = def;
-       
+
     }
 
     //For CharacterSelect 
@@ -543,11 +579,12 @@ public class SetNpcDef : Packet
     public int x;
     public int y;
     public uint direction;
+    public uint npcId;
     public ulong health;
     public ulong maxHealth;
-    public uint npcId;
 
-    public SetNpcDef(ulong entityId, int x, int y, uint direction, ulong health, ulong maxHealth, uint npcId)
+
+    public SetNpcDef(ulong entityId, int x, int y, uint direction, uint npcId, ulong health, ulong maxHealth)
     {
         this.packetType = (int)PacketType.SET_NPC_DEF;
         this.entityId = entityId;
@@ -643,7 +680,7 @@ public class InitPlayerVals : Packet
     public ulong expTNL; //Exp till next level
 
     [JsonConstructor]
-    public InitPlayerVals(ulong health, ulong maxHealth, ulong mana, ulong maxMana, ulong energy, ulong maxEnergy, uint level, 
+    public InitPlayerVals(ulong health, ulong maxHealth, ulong mana, ulong maxMana, ulong energy, ulong maxEnergy, uint level,
         ulong exp, ulong expLevel, ulong expTNL)
     {
         this.packetType = (int)PacketType.INIT_PLAYER_VALS;
